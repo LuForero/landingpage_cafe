@@ -1,17 +1,31 @@
 <?php
-require_once 'config/db.php';
 
-class Farmer {
-  private $name, $sidewalk, $email;
+class Farmer
+{
+  private $db;
 
-  public function setNombre($n) { $this->name = $n; }
-  public function setRegion($r) { $this->sidewalk = $r; }
-  public function setCorreo($c) { $this->email = $c; }
+  public function __construct($conexion)
+  {
+    $this->db = $conexion;
+  }
 
-  public function guardar() {
-    global $db;
-    $sql = "INSERT INTO farmers (nombre, region, correo)
-            VALUES ('$this->name', '$this->sidewalk', '$this->email')";
-    $db->query($sql);
+  public function registrar($name, $sidewalk, $email, $phone, $description, $password)
+  {
+    try {
+      $stmt = $this->db->prepare("INSERT INTO farmers (name, sidewalk, email, phone, description, password) 
+                                   VALUES (:name, :sidewalk, :email, :phone, :description, :password)");
+
+      $stmt->bindParam(':name', $name);
+      $stmt->bindParam(':sidewalk', $sidewalk);
+      $stmt->bindParam(':email', $email);
+      $stmt->bindParam(':phone', $phone);
+      $stmt->bindParam(':description', $description);
+      $stmt->bindParam(':password', $password);
+
+      $stmt->execute();
+      return true;
+    } catch (PDOException $e) {
+      return false;
+    }
   }
 }
