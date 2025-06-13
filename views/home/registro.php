@@ -1,46 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <title>Registro de Caficultor</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+  <style>
+    body {
+      background-image: url('../public/img/img-fondo-formulario.jpg');
+      /* Cambia esta ruta a tu imagen */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-container {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.28);
+      max-width: 600px;
+      width: 100%;
+    }
+  </style>
 </head>
 
-<body class="bg-light">
+<body>
 
-  <div class="container mt-5">
-    <h2 class="mb-4">Registro de Caficultor</h2>
+  <div class="form-container">
+    <h2 class="text-center mb-4">Registro de Caficultor</h2>
 
-    <form action="../public/index.php?action=registrar" method="POST" class="bg-white p-4 rounded shadow">
+    <form action="index.php?action=registrar" method="POST">
       <div class="mb-3">
-        <label for="name" class="form-label">Nombre completo</label>
-        <input type="text" name="name" id="name" class="form-control" required>
+        <label for="name" class="form-label">Nombre y Apellido</label>
+        <input type="text" name="name" id="name" class="form-control" placeholder="Ingresa tu nombre completo" required>
       </div>
 
       <div class="mb-3">
-        <label for="sidewalk" class="form-label">Vereda</label>
-        <input type="text" name="sidewalk" id="sidewalk" class="form-control" required>
+        <label for="location_type" class="form-label">Tipo de ubicación</label>
+        <select name="location_type" id="location_type" class="form-select" required>
+          <option value="">Seleccione</option>
+          <option value="Vereda">Vereda</option>
+          <option value="Municipio">Municipio</option>
+        </select>
       </div>
 
       <div class="mb-3">
-        <label for="email" class="form-label">Correo electrónico</label>
-        <input type="email" name="email" id="email" class="form-control" required>
+        <label for="sidewalk" class="form-label">Nombre de la vereda o municipio</label>
+        <input type="text" name="sidewalk" id="sidewalk" class="form-control" placeholder="Ejemplo: El Paraíso" required>
+      </div>
+
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Correo electrónico (opcional)</label>
+        <input type="email" name="email" id="email" class="form-control" placeholder="ejemplo@correo.com">
       </div>
 
       <div class="mb-3">
         <label for="phone" class="form-label">Teléfono</label>
-        <input type="text" name="phone" id="phone" class="form-control">
+        <input type="text" name="phone" id="phone" class="form-control" placeholder="Número de contacto" required>
       </div>
 
       <div class="mb-3">
         <label for="description" class="form-label">Descripción</label>
-        <textarea name="description" id="description" class="form-control"></textarea>
+        <textarea name="description" id="description" class="form-control" placeholder="Cuéntanos sobre tu finca, cultivo, experiencia..." required></textarea>
       </div>
 
-      <div class="mb-3">
+      <!-- <div class="mb-3">
         <label for="password" class="form-label">Contraseña</label>
-        <input type="password" name="password" id="password" class="form-control" required>
-      </div>
+        <input type="password" name="password" id="password" class="form-control" placeholder="Crea una contraseña segura" required>
+      </div>-->
 
-      <button action= "../public/index.php?action=registroExitoso"type="submit" class="btn btn-success">Registrarse</button>
+      <div class="d-grid">
+        <button type="submit" class="btn btn-success btn-lg">Registrarse</button>
+      </div>
     </form>
   </div>
 

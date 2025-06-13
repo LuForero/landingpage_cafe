@@ -26,6 +26,12 @@
                     <li class="nav-item"><a class="nav-link" href="#venta">Venta</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
                 </ul>
+
+                <!-- Aquí fuera del UL, pero dentro de navbar -->
+                <div class="d-flex ms-3">
+                    <a href="index.php?action=registro" class="btn btn-success me-2">Registro de Caficultores</a>
+                    <a href="index.php?controller=auth&action=login" class="btn btn-primary">Iniciar Sesión</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -38,9 +44,9 @@
             <h1 class="display-4 fw-bold">Café de Origen</h1>
             <p class="lead d-flex align-items-center gap-2">Conectamos caficultores con amantes del buen café</p>
 
-            <a href="index.php?action=registro" class="btn mt-3 shadow" style="background-color: #59463F; color: white;">
+            <!-- <a href="index.php?action=registro" class="btn mt-3 shadow" style="background-color: #59463F; color: white;">
                 <i class="bi bi-cup-hot fs-5 me-2 text-warning"></i> Conviértete en caficultor aliado
-            </a>
+            </a>--> <!-- Botón opcional en el hero que me lleva al registro de caficultores -->
         </div>
     </section>
 
@@ -56,7 +62,7 @@
                 </div>
 
                 <div class="col-lg-6 text-center">
-                    <img src="../public/img/quienes-somos.jpg" alt="Equipo de caficultores" class="img-fluid rounded shadow">
+                    <img src="../public/img/planta-cafe.png" alt="Equipo de caficultores" class="img-fluid rounded shadow">
                 </div>
             </div>
         </div>

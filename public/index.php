@@ -28,11 +28,20 @@ switch ($action) {
         break;
 
     case 'registroExitoso':
-        echo "<h2>¡Registro exitoso!</h2>";
-        echo '<a href="index.php" class="btn btn-primary">Volver al inicio</a>';
+        require_once '../views/home/registroExitoso.php';
         break;
+
 
     default:
         echo "<h2>Página no encontrada</h2>";
+        break;
+
+    case 'login':
+        require_once '../views/auth/login.php';
+        break;
+
+    case 'loginPost':
+        $controller = new AuthController($conexion);
+        $controller->login();
         break;
 }
