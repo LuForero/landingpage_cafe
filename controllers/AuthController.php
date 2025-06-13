@@ -13,29 +13,47 @@ class AuthController
 
     public function login()
     {
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+        require_once __DIR__ . '/../views/auth/login.php';
+    }
+
+    public function iniciarSesion()
+    {
+        $email = $_POST['email'] ?? '';
+        $password = $_POST['password'] ?? '';
 
         $user = $this->userModel->getUserByEmail($email);
 
         if ($user && password_verify($password, $user['password'])) {
-            // Inicio de sesión exitoso
-            session_start();
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['role'] = $user['role'];
             $_SESSION['name'] = $user['name'];
 
-            // Redirigimos según el rol
             if ($user['role'] === 'admin') {
-                header('Location: index.php?action=adminDashboard');
+                header('Location: index.php?controller=admin&action=dashboard');
             } else {
-                header('Location: index.php?action=farmersDashboard');
+                header('Location: index.php?controller=farmers&action=dashboard');
             }
             exit();
         } else {
-            // Error de login
-            header('Location: index.php?action=login&error=login');
-            exit();
+            $error = "Correo o contraseña incorrectos";
+            require_once __DIR__ . '/../views/auth/login.php';
         }
+    }
+
+    // Métodos que estaban generando error:
+
+    public function forgotPassword()
+    {
+        require_once __DIR__ . '/../views/auth/forgot_password.php';
+    }
+
+    public function sendResetEmail()
+    {
+        echo "Función de envío de email de recuperación (pendiente por implementar)";
+    }
+
+    public function resetPassword()
+    {
+        echo "Función de restablecimiento de contraseña (pendiente por implementar)";
     }
 }

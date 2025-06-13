@@ -66,13 +66,3 @@
             </form>
         </div>
     </div>
-
-    <footer class="bg-dark text-white text-center py-3 mt-auto position-fixed bottom-0 w-100">
-        <div class="container">
-            <p class="mb-0">© 2025 Café de Origen. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-
-</body>
-
-</html>
