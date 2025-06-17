@@ -76,9 +76,11 @@
         <input type="password" name="password" id="password" class="form-control" placeholder="Crea una contraseña segura" required>
       </div>-->
 
-      <div class="d-grid">
-        <button type="submit" class="btn btn-success btn-lg">Registrarse</button>
+      <div class="d-flex justify-content-between gap-3">
+        <button type="submit" class="btn btn-lg w-50" style="background-color: #4E7316; color: white;">Registrarse</button>
+        <a href="/Landingpage-cafe/public/" class="btn btn-outline btn-lg w-50" style="background-color: #262526; color: white;">Volver al inicio</a>
       </div>
+
     </form>
   </div>
 

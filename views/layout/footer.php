@@ -2,7 +2,7 @@
 
 <footer class="bg-dark text-white text-center py-3 mt-auto">
     <div class="container">
-        <p class="mb-0">© <?= date("Y") ?> Café de Origen. Todos los derechos reservados.</p>
+        <p class="mb-0">© <?= date("Y") ?> Café Montañero. Todos los derechos reservados.</p>
     </div>
 </footer>
 

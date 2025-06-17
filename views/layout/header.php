@@ -9,7 +9,7 @@ $baseUrl = rtrim($baseUrl, "/\\");
 
 <head>
     <meta charset="UTF-8">
-    <title>Café de Origen</title>
+    <title>Café Montañero</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -38,7 +38,7 @@ $baseUrl = rtrim($baseUrl, "/\\");
         <div class="container">
             <a class="navbar-brand" href="<?= $baseUrl ?>/index.php?action=home">
                 <img src="<?= $baseUrl ?>/public/img/logo-cafe.png" alt="Logo Café">
-                Café de Origen
+                Café Montañero
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCafe" aria-controls="navbarCafe" aria-expanded="false" aria-label="Menú">
