@@ -78,7 +78,7 @@
                 </div>
             </div>
 
-            <!-- Cards del equipo -->
+            <!-- Cards con fotos de las personas que conforman el equipo -->
             <div class="row mt-5 text-center">
                 <h3 class="text-white mb-4">Conoce al equipo detrás del proyecto</h3>
 
@@ -127,12 +127,12 @@
             <div class="row align-items-center mb-5">
                 <!-- Imagen izquierda con tamaño reducido -->
                 <div class="col-lg-6 mb-4 mb-lg-0 text-center">
-                    <img src="../public/img/img-caficultor1.jpg" alt="Caficultor trabajando" class="img-fluid rounded shadow" style="max-width: 80%; height: auto;">
+                    <img src="../public/img/img-secadodelcafé.jpg" alt="Caficultor trabajando" class="img-fluid rounded shadow" style="max-width: 80%; height: auto;">
                 </div>
 
                 <!-- Texto derecha -->
                 <div class="col-lg-6">
-                    <h4 class="fw-bold" style="color: #4E7316;">Desde la raíz: compromiso y tradición</h4>
+                    <h4 class="fw-bold" style="color: #4E7316;">Desde la raíz: Compromiso y Tradición</h4>
                     <p>
                         En cada finca aliada crece mucho más que café: crecen sueños, familias, herencias y saberes transmitidos por generaciones.
                         Nos aliamos con caficultores que cultivan con conciencia, respeto por la tierra y pasión por entregar lo mejor de sí en cada cosecha.
@@ -147,7 +147,7 @@
             <div class="row align-items-center flex-lg-row-reverse">
                 <!-- Imagen derecha con tamaño reducido -->
                 <div class="col-lg-6 mb-4 mb-lg-0 text-center">
-                    <img src="../public/img/img-secadodelcafé.jpg" alt="Cosecha de café" class="img-fluid rounded shadow" style="max-width: 80%; height: auto;">
+                    <img src="../public/img/img-caficultor1.jpg" alt="Cosecha de café" class="img-fluid rounded shadow" style="max-width: 80%; height: auto;">
                 </div>
 
                 <!-- Texto izquierda con botón -->
@@ -161,7 +161,7 @@
                     <p>
                         Sé parte de una red de caficultores orgullosos de su trabajo, con visibilidad, respaldo y conexión directa con consumidores conscientes.
                     </p>
-                    <a href="index.php?action=registro" class="btn btn-success mt-3">Quiero unirme como caficultor aliado</a>
+                    <a href="index.php?action=registro" class="btn btn-outline-success mt-4" style="background-color: #4E7316; color: white;">Quiero unirme como caficultor aliado</a>
                 </div>
             </div>
         </div>
@@ -173,31 +173,31 @@
             <!-- Título -->
             <div class="text-center mb-5">
                 <h2 class="display-6 fw-bold" style="color: #4E7316;">Del grano a tu taza</h2>
-                <p class="lead text-muted">Cada paso cuenta. Nuestro proceso es transparente, artesanal y cuidadosamente seleccionado para ofrecerte un café excepcional.</p>
+                <p class="lead text-muted">Cada paso cuenta, nuestro proceso es transparente, artesanal y cuidadosamente seleccionado para ofrecerte un café excepcional.</p>
             </div>
 
             <!-- Pasos del proceso -->
             <div class="row text-center">
                 <div class="col-md-3 mb-5">
-                    <img src="../public/img/paso1.png" alt="Cultivo" style="width: 80px;" class="mb-3">
+                    <img src="../public/img/img-1.cultivo.png" alt="Cultivo" style="width: 80px;" class="mb-3">
                     <h5 class="fw-bold">1. Cultivo</h5>
                     <p class="text-muted">Nuestros caficultores siembran con pasión en tierras fértiles como Marquetalia, Caldas.</p>
                 </div>
 
                 <div class="col-md-3 mb-5">
-                    <img src="../public/img/paso2.png" alt="Cosecha" style="width: 80px;" class="mb-3">
+                    <img src="../public/img/img-2.cosecha.png" alt="Cosecha" style="width: 80px;" class="mb-3">
                     <h5 class="fw-bold">2. Cosecha</h5>
                     <p class="text-muted">Se recolectan a mano los granos maduros, seleccionando solo los mejores.</p>
                 </div>
 
                 <div class="col-md-3 mb-5">
-                    <img src="../public/img/paso3.png" alt="Beneficio y secado" style="width: 80px;" class="mb-3">
+                    <img src="../public/img/img-3.secado.png" alt="Beneficio y secado" style="width: 80px;" class="mb-3">
                     <h5 class="fw-bold">3. Beneficio y secado</h5>
                     <p class="text-muted">El grano es lavado, secado al sol y tratado de manera artesanal.</p>
                 </div>
 
                 <div class="col-md-3 mb-5">
-                    <img src="../public/img/paso4.png" alt="Empaque y entrega" style="width: 80px;" class="mb-3">
+                    <img src="../public/img/img-4.empaque.png" alt="Empaque y entrega" style="width: 80px;" class="mb-3">
                     <h5 class="fw-bold">4. Empaque & entrega</h5>
                     <p class="text-muted">El café se empaca fresco y llega directamente a tu hogar sin intermediarios.</p>
                 </div>
@@ -205,29 +205,151 @@
 
             <!-- Llamado a la acción -->
             <div class="text-center mt-5">
-                <a href="index.php?action=products" class="btn btn-outline-success btn-lg">Descubre nuestros cafés</a>
+                <a href="index.php?action=products" class="btn btn-outline-success btn-lg" style="background-color: #4E7316; color: white;">Descubre nuestro café</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proceso de la siembra del café con una url de youtube incluida -->
+    <section id="proceso" class="container text-center my-5">
+        <h2 class="mb-4">Conoce nuestro proceso</h2>
+        <div class="ratio ratio-16x9">
+            <iframe
+                src="https://www.youtube.com/embed/6QgJk1qFIps"
+                title="Video del proceso del café"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
+    <!-- Sección de Venta -->
+    <section id="venta" class="py-5" style="background-color: #262526;">
+        <div class="container text-center">
+            <h2 class="display-5 fw-bold mb-4" style="color:rgb(255, 255, 255);">Descubre el Sabor del Café Montañero</h2>
+            <p class="lead mb-5" style="color:rgb(255, 255, 255);">Compra café directamente de nuestros caficultores. Variedades 100% colombianas, seleccionadas y tostadas artesanalmente.</p>
+
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <!-- Producto 1 -->
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0">
+                        <img src="../public/img/img-caféviva.jpg" class="card-img-top" alt="Café Clásico" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Café Montaña Viva</h5>
+                            <p class="card-text">Presentación: 250g | Tostión media<br>Notas: Chocolate, nuez y caña de azúcar.</p>
+                            <p class="fw-bold text-success">$20.000 COP</p>
+                            <a href="#" class="btn btn-outline-success">Comprar ahora</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 2 -->
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0">
+                        <img src="../public/img/img-reservamarquetalia.jpg" class="card-img-top" alt="Café Especialidad" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Reserva Marquetalia</h5>
+                            <p class="card-text">Presentación: 500g | Tostión alta<br>Origen: Marquetalia, Caldas.<br>Sabor intenso y aroma floral.</p>
+                            <p class="fw-bold text-success">$35.000 COP</p>
+                            <a href="#" class="btn btn-outline-success">Agregar al carrito</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 3 -->
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0">
+                        <img src="../public/img/img-aromamontañero.jpg" class="card-img-top" alt="Café Molido" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Aroma Montañero</h5>
+                            <p class="card-text">Presentación: 1kg | Molido<br>Café de especialidad para preparar en prensa o cafetera tradicional.</p>
+                            <p class="fw-bold text-success">$60.000 COP</p>
+                            <a href="#" class="btn btn-outline-success">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 4 -->
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0">
+                        <img src="../public/img/img-granosupremo.jpg" class="card-img-top" alt="Café en grano" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Café Grano Supremo</h5>
+                            <p class="card-text">Presentación: 500g | En grano<br>Para moler al gusto. Ideal para métodos filtrados o espresso.</p>
+                            <p class="fw-bold text-success">$38.000 COP</p>
+                            <a href="#" class="btn btn-outline-success">Comprar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 5 -->
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0">
+                        <img src="../public/img/img-cosechaoro.jpg" class="card-img-top" alt="Café Edición Limitada" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Café Cosecha de Oro</h5>
+                            <p class="card-text">Presentación: 250g | Tostión clara<br>Edición limitada de micro lote con sabores exóticos.</p>
+                            <p class="fw-bold text-success">$28.000 COP</p>
+                            <a href="#" class="btn btn-outline-success">Ver más</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Producto 6 -->
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0">
+                        <img src="../public/img/img-gonzalez.jpg" class="card-img-top" alt="Café Edición Limitada" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Finca González</h5>
+                            <p class="card-text">Presentación: 250g | Molido o en grano<br>Café de finca única, sabores exóticos.</p>
+                            <p class="fw-bold text-success">$28.000 COP</p>
+                            <a href="#" class="btn btn-outline-success">Ver más</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- Llamado a la acción en dos columnas -->
+    <section id="caficultores" class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row align-items-center text-center text-md-start">
+
+                <!-- Columna izquierda -->
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <h2 class="display-6 fw-bold">¿Quieres saber más?</h2>
+                    <p class="lead">Contáctanos y únete a la comunidad cafetera que impulsa el campo colombiano.</p>
+                </div>
+
+                <!-- Columna derecha -->
+                <div class="col-md-6">
+                    <h2>¿Eres caficultor?</h2>
+                    <p>Únete a nuestra red de productores.</p>
+                    <a href="index.php?action=registro" class="btn btn-success">Regístrate</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Contacto Simple -->
+    <section id="contacto" class="py-5 text-center" style="background-color: #262526; color: white;">
+        <div class="container">
+            <p><i class="bi bi-envelope-fill me-2 text-success"></i> contacto@cafemontanero.com</p>
+            <p><i class="bi bi-telephone-fill me-2 text-success"></i> +57 310 123 4567</p>
+            <p><i class="bi bi-geo-alt-fill me-2 text-success"></i> Marquetalia, Caldas - Colombia</p>
+
+            <div class="mt-4">
+                <h5 class="mb-3">Síguenos</h5>
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-4"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-whatsapp fs-4"></i></a>
             </div>
         </div>
     </section>
 
 
-
-
-    <!-- Proceso -->
-    <section id="proceso" class="container text-center my-5">
-        <h2>Conoce nuestro proceso</h2>
-        <video controls width="100%">
-            <source src="../public/video/proceso.mp4" type="video/mp4">
-            Tu navegador no soporta video.
-        </video>
-    </section>
-
-    <!-- Llamado a la acción -->
-    <section id="caficultores" class="bg-dark text-white p-5 text-center">
-        <h2>¿Eres caficultor?</h2>
-        <p>Únete a nuestra red de productores.</p>
-        <a href="index.php?action=registro" class="btn btn-success">Regístrate</a>
-    </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
