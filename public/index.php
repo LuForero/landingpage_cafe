@@ -40,6 +40,7 @@ switch ($controller) {
         }
         break;
 
+
     case 'auth':
         require_once __DIR__ . '/../controllers/AuthController.php';
         $authController = new AuthController($conexion);
@@ -59,7 +60,24 @@ switch ($controller) {
         }
         break;
 
-    default:
-        echo "<h2>Página no encontrada (general)</h2>";
+    case 'product':
+        require_once __DIR__ . '/../controllers/ProductController.php';
+        $productController = new ProductController($conexion);
+
+        if ($action == 'index') {
+            $productController->index();
+        } elseif ($action == 'create') {
+            $productController->create();
+        } elseif ($action == 'store') {
+            $productController->store();
+        } elseif ($action == 'edit') {
+            $productController->edit();
+        } elseif ($action == 'update') {
+            $productController->update();
+        } elseif ($action == 'delete') {
+            $productController->delete();
+        } else {
+            echo "<h2>Acción no encontrada (product)</h2>";
+        }
         break;
 }

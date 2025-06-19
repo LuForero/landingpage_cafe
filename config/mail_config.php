@@ -4,7 +4,7 @@
 return [
 
     // Dirección del servidor SMTP (en este caso Gmail)
-    'host' => 'smtp.gmail.com',
+    'host' => 'llfgon.gmail.com',
 
     // Correo electrónico desde el que se enviarán los correos (debe estar autenticado) correo de salida
     'username' => 'llfgon@gmail.com',
@@ -17,7 +17,7 @@ return [
     'from_email' => 'llfgon@gmail.com',
 
     // Nombre que aparecerá como remitente (junto al correo)
-    'from_name' => 'Cafetería Alianza',
+    'from_name' => 'Landing Page',
 
     // Puerto SMTP que se utilizará: 587 para STARTTLS o 465 para SSL
     'port' => 587,

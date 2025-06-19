@@ -45,7 +45,7 @@
                 <div class="alert alert-danger text-center"><?= htmlspecialchars($error) ?></div>
             <?php endif; ?>
 
-            <form action="index.php?controller=auth&action=login" method="POST">
+            <form action="index.php?controller=auth&action=loginPost" method="POST">
                 <div class="mb-3">
                     <label for="email" class="form-label">Correo electrónico</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Ingresa tu correo" required>
@@ -56,7 +56,11 @@
                     <input type="password" class="form-control" id="password" name="password" placeholder="Ingresa tu contraseña" required>
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
+                <!-- Botón Iniciar sesión -->
+                <button type="submit" class="btn btn-primary w-100 mb-3">Iniciar sesión</button>
+
+                <!-- Botón Volver al inicio -->
+                <a href="/Landingpage-cafe/public/" class="btn w-100" style="background-color: #262526; color: white;">Volver al inicio</a>
 
                 <div class="text-center mt-3">
                     <a href="index.php?controller=auth&action=forgotPassword" class="btn btn-link p-0">

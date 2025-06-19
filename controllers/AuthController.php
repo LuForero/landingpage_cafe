@@ -29,9 +29,9 @@ class AuthController
             $_SESSION['name'] = $user['name'];
 
             if ($user['role'] === 'admin') {
-                header('Location: index.php?controller=admin&action=dashboard');
+                header('Location: index.php?controller=product&action=index');
             } else {
-                header('Location: index.php?controller=farmers&action=dashboard');
+                header('Location: index.php?controller=farmer&action=dashboard');
             }
             exit();
         } else {
@@ -39,8 +39,6 @@ class AuthController
             require_once __DIR__ . '/../views/auth/login.php';
         }
     }
-
-    // Métodos que estaban generando error:
 
     public function forgotPassword()
     {

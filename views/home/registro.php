@@ -35,7 +35,7 @@
   <div class="form-container">
     <h2 class="text-center mb-4">Registro de Caficultor</h2>
 
-    <form action="index.php?action=registrar" method="POST">
+    <form action="index.php?controller=farmer&action=registrar" method="POST">
       <div class="mb-3">
         <label for="name" class="form-label">Nombre y Apellido</label>
         <input type="text" name="name" id="name" class="form-control" placeholder="Ingresa tu nombre completo" required>

@@ -37,17 +37,66 @@
         </div>
     </nav>
 
-    <!-- Hero imagen Banner, botones registro caficultores -->
-    <section class="position-relative text-white text-center" style="background-image: url('../public/img/img.hero.caficultor.jpg'); background-size: cover; background-position: center; height: 500px;">
-        <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.4);"></div>
+    <!-- Hero con Carousel automático y puntos indicadores -->
+    <section id="heroCarousel">
+        <div id="carouselCafe" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
 
-        <div class="position-absolute top-50 start-0 translate-middle-y ps-5 text-start">
-            <h1 class="display-4 fw-bold">Café Montañero</h1>
-            <p class="lead d-flex align-items-center gap-2">Conectamos caficultores con amantes del buen café</p>
+            <!-- Indicadores -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselCafe" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselCafe" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselCafe" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselCafe" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            </div>
 
-            <!-- <a href="index.php?action=registro" class="btn mt-3 shadow" style="background-color: #59463F; color: white;">
-                <i class="bi bi-cup-hot fs-5 me-2 text-warning"></i> Conviértete en caficultor aliado
-            </a>--> <!-- Botón opcional en el hero que me lleva al registro de caficultores -->
+            <!-- Slides -->
+            <div class="carousel-inner">
+
+                <!-- Slide 1 -->
+                <div class="carousel-item active">
+                    <div class="position-relative text-white text-center" style="background-image: url('../public/img/img.hero.caficultor.jpg'); background-size: cover; background-position: center; height: 500px;">
+                        <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.4);"></div>
+                        <div class="position-absolute top-50 start-0 translate-middle-y ps-5 text-start">
+                            <h1 class="display-4 fw-bold">Café Montañero</h1>
+                            <p class="lead">Conectamos caficultores con amantes del buen café</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-item">
+                    <div class="position-relative text-white text-center" style="background-image: url('../public/img/img-hero1.jpg'); background-size: cover; background-position: center; height: 500px;">
+                        <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.4);"></div>
+                        <div class="position-absolute top-50 start-0 translate-middle-y ps-5 text-start">
+                            <h1 class="display-4 fw-bold">Pasión en cada grano</h1>
+                            <p class="lead">Molienda artesanal que despierta aromas, conserva la esencia y honra la tradición cafetera.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-item">
+                    <div class="position-relative text-white text-center" style="background-image: url('../public/img/img-hero2.jpg'); background-size: cover; background-position: center; height: 500px;">
+                        <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.4);"></div>
+                        <div class="position-absolute top-50 start-0 translate-middle-y ps-5 text-start">
+                            <h1 class="display-4 fw-bold">Apoyamos al campo colombiano</h1>
+                            <p class="lead">Un café justo, sostenible y de calidad.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="carousel-item">
+                    <div class="position-relative text-white text-center" style="background-image: url('../public/img/img-hero3.jpg'); background-size: cover; background-position: center; height: 500px;">
+                        <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.4);"></div>
+                        <div class="position-absolute top-50 start-0 translate-middle-y ps-5 text-start">
+                            <h1 class="display-4 fw-bold">Aroma que inspira</h1>
+                            <p class="lead">El café recién molido conserva la magia del campo colombiano en cada taza.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
@@ -307,31 +356,37 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
-    <!-- Llamado a la acción en dos columnas -->
-    <section id="caficultores" class="bg-dark text-white py-5">
+    <!-- Llamado a la acción en tres columnas -->
+    <section id="caficultores" class="py-5" style="background-color: #F2DAC4; color: #000;">
         <div class="container">
             <div class="row align-items-center text-center text-md-start">
 
                 <!-- Columna izquierda -->
-                <div class="col-md-6 mb-4 mb-md-0">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h2>¿Eres caficultor?</h2>
+                    <p>Únete a nuestra red de productores.</p>
+                    <a href="index.php?action=registro" class="btn" style="background-color: #4E7316; color: white;">Regístrate</a>
+                </div>
+
+                <!-- Columna del centro -->
+
+                <div class="col-md-4 mb-4 mb-md-0">
                     <h2 class="display-6 fw-bold">¿Quieres saber más?</h2>
                     <p class="lead">Contáctanos y únete a la comunidad cafetera que impulsa el campo colombiano.</p>
                 </div>
 
-                <!-- Columna derecha -->
-                <div class="col-md-6">
-                    <h2>¿Eres caficultor?</h2>
-                    <p>Únete a nuestra red de productores.</p>
-                    <a href="index.php?action=registro" class="btn btn-success">Regístrate</a>
+                <!-- Columna derecha con imagen -->
+                <div class="col-md-4 text-center">
+                    <img src="../public/img/img-cafe-taza.png" alt="Caficultor" class="img-fluid rounded" style="max-height: 200px;">
                 </div>
 
             </div>
         </div>
     </section>
+
 
     <!-- Sección de Contacto Simple -->
     <section id="contacto" class="py-5 text-center" style="background-color: #262526; color: white;">
