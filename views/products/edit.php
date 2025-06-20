@@ -3,12 +3,13 @@
 <div class="container my-5">
     <h2 class="mb-4 text-center">Editar Producto</h2>
 
-    <form action="index.php?controller=product&action=edit" method="POST">
+    <form action="index.php?controller=product&action=update" method="POST">
         <input type="hidden" name="id" value="<?= $product['id'] ?>">
+        <input type="hidden" name="farmer_id" value="<?= $product['farmer_id'] ?>">
 
         <div class="mb-3">
-            <label for="farmer_id" class="form-label">ID Caficultor</label>
-            <input type="number" name="farmer_id" id="farmer_id" class="form-control" value="<?= $product['farmer_id'] ?>" required>
+            <!--<label for="farmer_id" class="form-label">ID Caficultor</label>
+            <input type="number" name="farmer_id" id="farmer_id" class="form-control" value="<?= $product['farmer_id'] ?>" required>-->
         </div>
 
         <div class="mb-3">

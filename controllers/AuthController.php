@@ -54,4 +54,10 @@ class AuthController
     {
         echo "Función de restablecimiento de contraseña (pendiente por implementar)";
     }
+    public function logout()
+    {
+        session_destroy();
+        header('Location: index.php?controller=home&action=index');
+        exit();
+    }
 }

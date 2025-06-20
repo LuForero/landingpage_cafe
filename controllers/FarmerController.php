@@ -51,4 +51,39 @@ class FarmerController
       echo "Error al registrar el caficultor.";
     }
   }
+  public function listar()
+  {
+    $farmers = $this->farmerModel->getAll();
+    require_once __DIR__ . '/../views/farmer/lista.php';
+  }
+  
+  public function exportarCSV()
+  {
+    $farmers = $this->farmerModel->getAll(); // Asegúrate de tener este método en el modelo
+
+    header('Content-Type: text/csv; charset=utf-8');
+    header('Content-Disposition: attachment; filename=farmers.csv');
+
+    $output = fopen('php://output', 'w');
+
+    // Encabezados del archivo
+    fputcsv($output, ['ID', 'Nombre', 'Tipo Ubicación', 'Vereda/Municipio', 'Correo', 'Teléfono', 'Descripción', 'Fecha']);
+
+    // Datos
+    foreach ($farmers as $farmer) {
+      fputcsv($output, [
+        $farmer['id'],
+        $farmer['name'],
+        $farmer['location_type'],
+        $farmer['sidewalk'],
+        $farmer['email'],
+        $farmer['phone'],
+        $farmer['description'],
+        $farmer['created_at']
+      ]);
+    }
+
+    fclose($output);
+    exit;
+  }
 }

@@ -11,7 +11,6 @@ $conexion = Database::connect();
 $controller = $_GET['controller'] ?? 'home';
 $action = $_GET['action'] ?? 'index';
 
-// Según el controlador, incluimos los controladores necesarios
 switch ($controller) {
     case 'home':
         switch ($action) {
@@ -33,27 +32,33 @@ switch ($controller) {
     case 'farmer':
         require_once __DIR__ . '/../controllers/FarmerController.php';
         $farmerController = new FarmerController($conexion);
-        if ($action == 'registrar') {
+
+        if ($action === 'registrar') {
             $farmerController->registrar();
+        } elseif ($action === 'listar') {
+            $farmerController->listar();
+        } elseif ($action === 'exportar') {
+            $farmerController->exportarCSV(); // <- para la función de exportar
         } else {
             echo "<h2>Acción no encontrada (farmer)</h2>";
         }
         break;
 
-
     case 'auth':
         require_once __DIR__ . '/../controllers/AuthController.php';
         $authController = new AuthController($conexion);
 
-        if ($action == 'login') {
+        if ($action === 'login') {
             $authController->login();
-        } elseif ($action == 'loginPost') {
+        } elseif ($action === 'loginPost') {
             $authController->iniciarSesion();
-        } elseif ($action == 'forgotPassword') {
+        } elseif ($action === 'logout') {
+            $authController->logout();
+        } elseif ($action === 'forgotPassword') {
             $authController->forgotPassword();
-        } elseif ($action == 'resetPassword') {
+        } elseif ($action === 'resetPassword') {
             $authController->resetPassword();
-        } elseif ($action == 'sendResetEmail') {
+        } elseif ($action === 'sendResetEmail') {
             $authController->sendResetEmail();
         } else {
             echo "<h2>Acción no encontrada (auth)</h2>";
@@ -64,20 +69,24 @@ switch ($controller) {
         require_once __DIR__ . '/../controllers/ProductController.php';
         $productController = new ProductController($conexion);
 
-        if ($action == 'index') {
+        if ($action === 'index') {
             $productController->index();
-        } elseif ($action == 'create') {
+        } elseif ($action === 'create') {
             $productController->create();
-        } elseif ($action == 'store') {
+        } elseif ($action === 'store') {
             $productController->store();
-        } elseif ($action == 'edit') {
+        } elseif ($action === 'edit') {
             $productController->edit();
-        } elseif ($action == 'update') {
+        } elseif ($action === 'update') {
             $productController->update();
-        } elseif ($action == 'delete') {
+        } elseif ($action === 'delete') {
             $productController->delete();
         } else {
             echo "<h2>Acción no encontrada (product)</h2>";
         }
+        break;
+
+    default:
+        echo "<h2>Controlador no encontrado</h2>";
         break;
 }

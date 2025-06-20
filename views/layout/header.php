@@ -25,8 +25,8 @@ $baseUrl = rtrim($baseUrl, "/\\");
         }
 
         .navbar-brand img {
-            width: 50px;
-            height: 50px;
+            width: 180px;
+            height: 70px;
             border-radius: 50%;
         }
     </style>
@@ -36,10 +36,8 @@ $baseUrl = rtrim($baseUrl, "/\\");
 
     <nav class="navbar navbar-expand-lg shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="<?= $baseUrl ?>/index.php?action=home">
-                <img src="<?= $baseUrl ?>/public/img/logo-cafe.png" alt="Logo Café">
-                Café Montañero
-            </a>
+            <a class="navbar-brand" href="http://localhost:8888/Landingpage-cafe/public/">
+                <img src="../public/img/logo-cafemontañero.png" alt="Logo Café" class="d-inline-block align-text-top"></a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCafe" aria-controls="navbarCafe" aria-expanded="false" aria-label="Menú">
                 <span class="navbar-toggler-icon"></span>
@@ -47,9 +45,31 @@ $baseUrl = rtrim($baseUrl, "/\\");
 
             <div class="collapse navbar-collapse" id="navbarCafe">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="<?= $baseUrl ?>/index.php?action=home">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= $baseUrl ?>/index.php?action=registro">Registro de Caficultores</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= $baseUrl ?>/index.php?controller=auth&action=login">Iniciar Sesión</a></li>
+                    <?php if (isset($_SESSION['role'])): ?>
+                        <li class="nav-item">
+                            <span class="nav-link">Bienvenido(a), <?= htmlspecialchars($_SESSION['name']) ?></span>
+                        </li>
+
+                        <?php if ($_SESSION['role'] === 'admin'): ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php?controller=farmer&action=listar">Ver Caficultores</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php?controller=product&action=index">Productos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php?controller=user&action=index">Usuarios</a>
+                            </li>
+                        <?php endif; ?>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php?controller=auth&action=logout">Cerrar sesión</a>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php?controller=auth&action=login">Iniciar Sesión</a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>

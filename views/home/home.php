@@ -12,9 +12,9 @@
     <!-- Aquí van botones que me redirigen a la sesión de la página, incluido logo -->
     <nav class="navbar navbar-expand-lg shadow-sm" style="background-color: #F2DAC4;">
         <div class="container">
-            <a class="navbar-brand" href="index.php?action=home">
-                <img src="../public/img/logo-cafe.png" alt="Logo Café" width="50" height="50" class="d-inline-block align-text-top">
-                Café Montañero
+            <a class="navbar-brand" href="http://localhost:8888/Landingpage-cafe/public/">
+                <img src="../public/img/logo-cafemontañero.png" alt="Logo Café" width="180" height="70" class="d-inline-block align-text-top">
+                <!--Café Montañero-->
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCafe" aria-controls="navbarCafe" aria-expanded="false" aria-label="Menú">
                 <span class="navbar-toggler-icon"></span>
@@ -54,7 +54,7 @@
 
                 <!-- Slide 1 -->
                 <div class="carousel-item active">
-                    <div class="position-relative text-white text-center" style="background-image: url('../public/img/img.hero.caficultor.jpg'); background-size: cover; background-position: center; height: 500px;">
+                    <div class="position-relative text-white text-center" style="background-image: url('../public/img/img.hero.caficultor1.jpg'); background-size: cover; background-position: center; height: 500px;">
                         <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.4);"></div>
                         <div class="position-absolute top-50 start-0 translate-middle-y ps-5 text-start">
                             <h1 class="display-4 fw-bold">Café Montañero</h1>

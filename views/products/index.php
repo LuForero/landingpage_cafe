@@ -22,7 +22,6 @@
             <?php if (!empty($products)): ?>
                 <?php foreach ($products as $product): ?>
                     <tr class="text-center">
-                        <td><?= $product['id'] ?></td>
                         <td><?= htmlspecialchars($product['name']) ?></td>
                         <td><?= htmlspecialchars($product['category']) ?></td>
                         <td>$<?= number_format($product['price'], 0, ',', '.') ?></td>

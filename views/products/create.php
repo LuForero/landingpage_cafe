@@ -1,13 +1,12 @@
-<?php require_once __DIR__ . '/../../layout/header.php'; ?>
+<?php require_once __DIR__ . '/../layout/header.php'; ?>
 
 <div class="container my-5">
     <h2 class="mb-4">Agregar Nuevo Producto</h2>
 
     <form action="index.php?controller=product&action=store" method="POST">
-        <div class="mb-3">
-            <label for="farmer_id" class="form-label">ID Caficultor (farmer_id)</label>
-            <input type="number" class="form-control" id="farmer_id" name="farmer_id" required>
-        </div>
+
+        <!-- farmer_id oculto -->
+        <input type="hidden" name="farmer_id" value="<?= htmlspecialchars($_SESSION['user_id']) ?>">
 
         <div class="mb-3">
             <label for="name" class="form-label">Nombre del Producto</label>
