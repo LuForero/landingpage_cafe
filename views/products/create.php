@@ -3,7 +3,7 @@
 <div class="container my-5">
     <h2 class="mb-4">Agregar Nuevo Producto</h2>
 
-    <form action="index.php?controller=product&action=store" method="POST">
+    <form action="index.php?controller=product&action=store" method="POST" enctype="multipart/form-data">
 
         <!-- farmer_id oculto -->
         <input type="hidden" name="farmer_id" value="<?= htmlspecialchars($_SESSION['user_id']) ?>">
@@ -34,8 +34,8 @@
         </div>
 
         <div class="mb-3">
-            <label for="image" class="form-label">URL de la Imagen</label>
-            <input type="text" class="form-control" id="image" name="image">
+            <label for="image" class="form-label">Imagen Producto</label>
+            <input type="file" class="form-control" id="image" name="image" accept="image/*">
         </div>
 
         <button type="submit" class="btn btn-success">Guardar Producto</button>

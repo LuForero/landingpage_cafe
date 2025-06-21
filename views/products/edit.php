@@ -3,9 +3,8 @@
 <div class="container my-5">
     <h2 class="mb-4 text-center">Editar Producto</h2>
 
-    <form action="index.php?controller=product&action=update" method="POST">
+    <form action="index.php?controller=product&action=update" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?= $product['id'] ?>">
-        <input type="hidden" name="farmer_id" value="<?= $product['farmer_id'] ?>">
 
         <div class="mb-3">
             <!--<label for="farmer_id" class="form-label">ID Caficultor</label>
@@ -38,8 +37,8 @@
         </div>
 
         <div class="mb-3">
-            <label for="image" class="form-label">URL de Imagen</label>
-            <input type="text" name="image" id="image" class="form-control" value="<?= $product['image'] ?>">
+            <label for="image" class="form-label">Imagen Producto</label>
+            <input type="file" name="image" id="image" class="form-control" accept="image/*">
         </div>
 
         <button type="submit" class="btn btn-primary w-100">Actualizar Producto</button>

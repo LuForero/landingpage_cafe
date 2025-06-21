@@ -14,7 +14,7 @@
                 <th>Categoría</th>
                 <th>Precio</th>
                 <th>Stock</th>
-                <th>Imagen</th>
+                <th>Imagen Producto</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -28,7 +28,7 @@
                         <td><?= $product['stock'] ?></td>
                         <td>
                             <?php if (!empty($product['image'])): ?>
-                                <img src="<?= $product['image'] ?>" alt="Imagen producto" width="60" height="60">
+                                <img src="/Landingpage-cafe/<?= $product['image'] ?>" alt="Imagen" style="width: 100px;">
                             <?php else: ?>
                                 Sin imagen
                             <?php endif; ?>

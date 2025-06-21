@@ -27,11 +27,10 @@ class Product
     }
 
     // Crear producto
-    public function create($farmer_id, $name, $category, $price, $stock, $description, $image)
+    public function create($name, $category, $price, $stock, $description, $image)
     {
-        $stmt = $this->db->prepare("INSERT INTO products (farmer_id, name, category, price, stock, description, image) 
-                                    VALUES (:farmer_id, :name, :category, :price, :stock, :description, :image)");
-        $stmt->bindParam(':farmer_id', $farmer_id);
+        $stmt = $this->db->prepare("INSERT INTO products (name, category, price, stock, description, image) 
+                                    VALUES (:name, :category, :price, :stock, :description, :image)");
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':category', $category);
         $stmt->bindParam(':price', $price);
@@ -42,10 +41,9 @@ class Product
     }
 
     // Actualizar producto
-    public function update($id, $farmer_id, $name, $category, $price, $stock, $description, $image)
+    public function update($id, $name, $category, $price, $stock, $description, $image)
     {
-        $stmt = $this->db->prepare("UPDATE products SET 
-                                        farmer_id = :farmer_id,
+        $stmt = $this->db->prepare("UPDATE products SET                                    
                                         name = :name,
                                         category = :category,
                                         price = :price,
@@ -53,8 +51,7 @@ class Product
                                         description = :description,
                                         image = :image
                                     WHERE id = :id");
-        $stmt->bindParam(':id', $id);
-        $stmt->bindParam(':farmer_id', $farmer_id);
+        $stmt->bindParam(':id', $id);      
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':category', $category);
         $stmt->bindParam(':price', $price);

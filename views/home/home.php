@@ -283,7 +283,7 @@
                 <!-- Producto 1 -->
                 <div class="col">
                     <div class="card h-100 shadow-sm border-0">
-                        <img src="../public/img/img-caféviva.jpg" class="card-img-top" alt="Café Clásico" style="height: 250px; object-fit: cover;">
+                        <img src="../public/img/img-caféviva.jpg" class="card-img-top" alt="Café Clásico" style="height: 250px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Café Montaña Viva</h5>
                             <p class="card-text">Presentación: 250g | Tostión media<br>Notas: Chocolate, nuez y caña de azúcar.</p>
@@ -296,7 +296,7 @@
                 <!-- Producto 2 -->
                 <div class="col">
                     <div class="card h-100 shadow-sm border-0">
-                        <img src="../public/img/img-reservamarquetalia.jpg" class="card-img-top" alt="Café Especialidad" style="height: 250px; object-fit: cover;">
+                        <img src="../public/img/img-reserva-marquetalia.jpg" class="card-img-top" alt="Café Especialidad" style="height: 250px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Reserva Marquetalia</h5>
                             <p class="card-text">Presentación: 500g | Tostión alta<br>Origen: Marquetalia, Caldas.<br>Sabor intenso y aroma floral.</p>

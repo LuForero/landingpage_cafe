@@ -27,15 +27,29 @@ class ProductController
     // Guardar nuevo producto
     public function store()
     {
-        $farmer_id = $_POST['farmer_id'];
         $name = $_POST['name'];
         $category = $_POST['category'];
         $price = $_POST['price'];
         $stock = $_POST['stock'];
         $description = $_POST['description'];
-        $image = $_POST['image'];  // Más adelante podemos agregar subida de imágenes
 
-        $this->productModel->create($farmer_id, $name, $category, $price, $stock, $description, $image);
+        $imagePath = '';
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            $uploadDir = __DIR__ . '/../public/uploads/';
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0777, true);
+            }
+
+            $fileName = basename($_FILES['image']['name']);
+            $uniqueName = time() . "_" . $fileName;
+            $targetFile = $uploadDir . $uniqueName;
+
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+                $imagePath = 'public/uploads/' . $uniqueName;
+            }
+        }
+
+        $this->productModel->create($name, $category, $price, $stock, $description, $imagePath);
         header('Location: index.php?controller=product&action=index');
     }
 
@@ -51,15 +65,37 @@ class ProductController
     public function update()
     {
         $id = $_POST['id'];
-        $farmer_id = $_POST['farmer_id'];
         $name = $_POST['name'];
         $category = $_POST['category'];
         $price = $_POST['price'];
         $stock = $_POST['stock'];
         $description = $_POST['description'];
-        $image = $_POST['image'];
 
-        $this->productModel->update($id, $farmer_id, $name, $category, $price, $stock, $description, $image);
+        // Obtener imagen actual del producto
+        $product = $this->productModel->getById($id);
+        $currentImage = $product['image'];
+
+        // Procesar la nueva imagen solo si se cargó una nueva
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            $uploadDir = __DIR__ . '/../public/uploads/';
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0777, true);
+            }
+
+            $fileName = basename($_FILES['image']['name']);
+            $uniqueName = time() . "_" . $fileName;
+            $targetFile = $uploadDir . $uniqueName;
+
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+                $image = 'public/uploads/' . $uniqueName;
+            }
+        } else {
+            $image = $currentImage;
+        }
+
+
+        $this->productModel->update($id, $name, $category, $price, $stock, $description, $image);
+
         header('Location: index.php?controller=product&action=index');
     }
 
