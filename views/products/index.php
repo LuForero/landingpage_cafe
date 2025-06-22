@@ -13,6 +13,7 @@
                 <th>Nombre</th>
                 <th>Categoría</th>
                 <th>Precio</th>
+                <th>Descripción</th>
                 <th>Stock</th>
                 <th>Imagen Producto</th>
                 <th>Acciones</th>
@@ -25,6 +26,7 @@
                         <td><?= htmlspecialchars($product['name']) ?></td>
                         <td><?= htmlspecialchars($product['category']) ?></td>
                         <td>$<?= number_format($product['price'], 0, ',', '.') ?></td>
+                        <td><?= htmlspecialchars($product['description']) ?></td>
                         <td><?= $product['stock'] ?></td>
                         <td>
                             <?php if (!empty($product['image'])): ?>
