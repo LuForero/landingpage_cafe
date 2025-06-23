@@ -6,6 +6,11 @@
     <a href="index.php?controller=product&action=create" class="btn btn-success mb-3">
         <i class="bi bi-plus-circle"></i> Agregar Nuevo Producto
     </a>
+    
+    <a href="index.php?controller=product&action=salesHistory" class="btn btn-secondary mb-3 ms-2">
+        <i class="bi bi-receipt"></i> Historial de Ventas
+    </a>
+
 
     <table class="table table-bordered table-striped">
         <thead class="table-dark text-center">

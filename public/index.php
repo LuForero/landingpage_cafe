@@ -84,6 +84,10 @@ switch ($controller) {
             $productController->update();
         } elseif ($action === 'delete') {
             $productController->delete();
+        } elseif ($action === 'salesHistory') {
+            $productController->salesHistory();
+        } elseif ($action === 'exportSalesCSV') {
+            $productController->exportSalesCSV();
         } else {
             echo "<h2>Acción no encontrada (product)</h2>";
         }
