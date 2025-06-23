@@ -21,7 +21,7 @@
                 <tr>
                     <td><?= htmlspecialchars($farmer['name']) ?></td>
                     <td><?= htmlspecialchars($farmer['location_type']) ?> - <?= htmlspecialchars($farmer['sidewalk']) ?></td>
-                    <td><?= htmlspecialchars($farmer['email']) ?></td>
+                    <td><?= htmlspecialchars($farmer['email'] ?? 'No disponible') ?></td>
                     <td><?= htmlspecialchars($farmer['phone']) ?></td>
                     <td><?= htmlspecialchars($farmer['description']) ?></td>
                     <td><?= date('d/m/Y', strtotime($farmer['created_at'])) ?></td>
@@ -30,3 +30,4 @@
         </tbody>
     </table>
 </div>
+<?php require_once __DIR__ . '/../layout/footer.php'; ?>

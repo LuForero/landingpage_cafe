@@ -1,7 +1,6 @@
 <?php
 // Calculamos el path absoluto dinámico
-$baseUrl = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']);
-$baseUrl = rtrim($baseUrl, "/\\");
+$baseUrl = "http://" . $_SERVER['HTTP_HOST'] . "/Landingpage-cafe";
 ?>
 
 <!DOCTYPE html>
@@ -34,45 +33,49 @@ $baseUrl = rtrim($baseUrl, "/\\");
 
 <body>
 
-    <nav class="navbar navbar-expand-lg shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="http://localhost:8888/Landingpage-cafe/public/">
-                <img src="../public/img/logo-cafemontañero.png" alt="Logo Café" class="d-inline-block align-text-top"></a>
+    <div class="d-flex flex-column min-vh-100">
+        <nav class="navbar navbar-expand-lg shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="http://localhost:8888/Landingpage-cafe/public/">
+                    <img src="<?= $baseUrl ?>/public/img/logo-cafemontañero.png" alt="Logo Café" class="d-inline-block align-text-top"></a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCafe" aria-controls="navbarCafe" aria-expanded="false" aria-label="Menú">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCafe" aria-controls="navbarCafe" aria-expanded="false" aria-label="Menú">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="navbarCafe">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <?php if (isset($_SESSION['role'])): ?>
-                        <li class="nav-item">
-                            <span class="nav-link">Bienvenido(a), <?= htmlspecialchars($_SESSION['name']) ?></span>
-                        </li>
+                <div class="collapse navbar-collapse" id="navbarCafe">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <?php if (isset($_SESSION['role'])): ?>
+                            <li class="nav-item">
+                                <span class="nav-link">Bienvenido(a), <?= htmlspecialchars($_SESSION['name']) ?></span>
+                            </li>
 
-                        <?php if ($_SESSION['role'] === 'admin'): ?>
+                            <!-- Ambos roles: admin y editor pueden ver caficultores -->
                             <li class="nav-item">
                                 <a class="nav-link" href="index.php?controller=farmer&action=listar">Ver Caficultores</a>
                             </li>
+
                             <li class="nav-item">
                                 <a class="nav-link" href="index.php?controller=product&action=index">Productos</a>
                             </li>
+                            <?php if ($_SESSION['role'] === 'admin'): ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="index.php?controller=user&action=index">Usuarios</a>
+                                </li>
+                            <?php endif; ?>
+
                             <li class="nav-item">
-                                <a class="nav-link" href="index.php?controller=user&action=index">Usuarios</a>
+                                <a class="nav-link" href="index.php?controller=auth&action=logout">Cerrar sesión</a>
+                            </li>
+                        <?php else: ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php?controller=auth&action=login">Iniciar Sesión</a>
                             </li>
                         <?php endif; ?>
+                    </ul>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php?controller=auth&action=logout">Cerrar sesión</a>
-                        </li>
-                    <?php else: ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php?controller=auth&action=login">Iniciar Sesión</a>
-                        </li>
-                    <?php endif; ?>
-                </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    <div class="container mt-4">
+        <div class="container mt-4">

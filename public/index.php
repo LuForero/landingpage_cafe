@@ -23,6 +23,9 @@ switch ($controller) {
             case 'registroExitoso':
                 require_once '../views/home/registroExitoso.php';
                 break;
+            case 'dashboard':  // Asegúrate de tener esto
+                require_once '../views/home/dashboard.php';
+                break;
             default:
                 echo "<h2>Página no encontrada (home)</h2>";
                 break;
@@ -88,5 +91,45 @@ switch ($controller) {
 
     default:
         echo "<h2>Controlador no encontrado</h2>";
+        break;
+
+    case 'user':
+        require_once __DIR__ . '/../controllers/UserController.php';
+        $userController = new UserController($conexion);
+
+        if ($action === 'index') {
+            $userController->index();
+        } elseif ($action === 'create') {
+            $userController->create(); // 👈 aquí agregas la llamada a create()
+        } elseif ($action === 'registrar') {
+            $userController->registrar();
+        } elseif ($action === 'edit') {
+            $userController->edit();
+        } elseif ($action === 'update') {
+            $userController->update();
+        } elseif ($action === 'delete') {
+            $userController->delete();
+        } else {
+            echo "<h2>Acción no encontrada (user)</h2>";
+        }
+        break;
+
+        if (file_exists($controllerFile)) {
+            require_once $controllerFile;
+            $controllerClass = ucfirst($controller) . "Controller";
+
+            $controllerObj = new $controllerClass();
+
+            if (method_exists($controllerObj, $action)) {
+                $controllerObj->$action();
+            } else {
+                echo "Método '$action' no encontrado.";
+            }
+        } else {
+            echo "Controlador '$controller' no encontrado.";
+        }
+
+    case 'dashboard':
+        require_once '../views/home/dashboard.php';
         break;
 }

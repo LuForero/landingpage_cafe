@@ -21,7 +21,7 @@ class User
     }
 
     // Registrar nuevo usuario (por si más adelante habilitamos registro directo)
-    public function registrar($name, $email, $password, $role = 'farmer')
+    public function index($name, $email, $password, $role = 'farmer')
     {
         $hash = password_hash($password, PASSWORD_DEFAULT);
 
@@ -65,6 +65,54 @@ class User
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':password', $hash);
         $stmt->bindParam(':id', $userId);
+        return $stmt->execute();
+    }
+
+    public function obtenerTodos()
+    {
+        $sql = "SELECT * FROM users";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function registrar($name, $email, $passwordHasheado, $role)
+    {
+        $query = "INSERT INTO users (name, email, password, role)
+              VALUES (:name, :email, :password, :role)";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $passwordHasheado); // 👈
+        $stmt->bindParam(':role', $role);
+
+        return $stmt->execute();
+    }
+
+    public function getById($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function update($id, $name, $email, $role)
+    {
+        $query = "UPDATE users SET name = :name, email = :email, role = :role WHERE id = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':role', $role);
+        return $stmt->execute();
+    }
+
+    public function delete($id)
+    {
+        $query = "DELETE FROM users WHERE id = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
 }

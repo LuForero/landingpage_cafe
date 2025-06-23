@@ -16,7 +16,9 @@
                 <th>Descripción</th>
                 <th>Stock</th>
                 <th>Imagen Producto</th>
-                <th>Acciones</th>
+                <?php if ($_SESSION['role'] === 'admin'): ?>
+                    <th>Acciones</th>
+                <?php endif; ?>
             </tr>
         </thead>
         <tbody>
@@ -35,16 +37,18 @@
                                 Sin imagen
                             <?php endif; ?>
                         </td>
-                        <td>
-                            <a href="index.php?controller=product&action=edit&id=<?= $product['id'] ?>" class="btn btn-warning btn-sm">
-                                Editar
-                            </a>
-                            <a href="index.php?controller=product&action=delete&id=<?= $product['id'] ?>"
-                                class="btn btn-danger btn-sm"
-                                onclick="return confirm('¿Estás seguro de eliminar este producto?');">
-                                Eliminar
-                            </a>
-                        </td>
+                        <?php if ($_SESSION['role'] === 'admin'): ?>
+                            <td>
+                                <a href="index.php?controller=product&action=edit&id=<?= $product['id'] ?>" class="btn btn-warning btn-sm">
+                                    Editar
+                                </a>
+                                <a href="index.php?controller=product&action=delete&id=<?= $product['id'] ?>"
+                                    class="btn btn-danger btn-sm"
+                                    onclick="return confirm('¿Estás seguro de eliminar este producto?');">
+                                    Eliminar
+                                </a>
+                            </td>
+                        <?php endif; ?>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
