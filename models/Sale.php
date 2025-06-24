@@ -1,5 +1,4 @@
 <?php
-
 class Sale
 {
     private $db;
@@ -7,6 +6,29 @@ class Sale
     public function __construct($conexion)
     {
         $this->db = $conexion;
+    }
+
+    // Crear una venta
+    public function create($orderId, $productId, $quantity, $subtotal)
+    {
+        $stmt = $this->db->prepare("INSERT INTO sales (order_id, product_id, quantity, subtotal) 
+                                    VALUES (:order_id, :product_id, :quantity, :subtotal)");
+        $stmt->bindParam(':order_id', $orderId);
+        $stmt->bindParam(':product_id', $productId);
+        $stmt->bindParam(':quantity', $quantity);
+        $stmt->bindParam(':subtotal', $subtotal);
+
+        $stmt->execute();
+    }
+
+    // (Opcional) Obtener ventas por orden
+    public function getByOrderId($orderId)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM sales WHERE order_id = :order_id");
+        $stmt->bindParam(':order_id', $orderId);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getTotalSoldByProduct($productId)

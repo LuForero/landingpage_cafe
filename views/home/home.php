@@ -28,10 +28,23 @@
                     <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
                 </ul>
 
-                <!-- Aquí van botones de registro y de iniciar sesión dentro del nav -->
-                <div class="d-flex ms-3">
-                    <a href="index.php?action=registro" class="btn me-2" style="background-color: #4E7316; color: white;">Registro de Caficultores</a>
-                    <a href="index.php?controller=auth&action=login" class="btn" style="background-color: #BF8E63; color: white;">Iniciar Sesión</a>
+                <!-- Aquí van botones de registro y de iniciar sesión dentro del nav seguido del carrito -->
+                <div class="d-flex ms-3 align-items-center">
+                    <a href="index.php?action=registro" class="btn me-2" style="background-color: #4E7316; color: white;">
+                        Registro de Caficultores
+                    </a>
+                    <a href="index.php?controller=auth&action=login" class="btn me-2" style="background-color: #BF8E63; color: white;">
+                        Iniciar Sesión
+                    </a>
+
+                    <a href="index.php?controller=cart&action=index" class="position-relative text-dark text-decoration-none">
+                        <i class="bi bi-cart4 fs-4"></i>
+                        <?php if (!empty($_SESSION['cart']) && count($_SESSION['cart']) > 0): ?>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                <?= count($_SESSION['cart']) ?>
+                            </span>
+                        <?php endif; ?>
+                    </a>
                 </div>
             </div>
         </div>
@@ -276,19 +289,20 @@
     <!-- Sección de Venta -->
     <section id="venta" class="py-5" style="background-color: #262526;">
         <div class="container text-center">
-            <h2 class="display-5 fw-bold mb-4" style="color:rgb(255, 255, 255);">Descubre el Sabor del Café Montañero</h2>
-            <p class="lead mb-5" style="color:rgb(255, 255, 255);">Compra café directamente de nuestros caficultores. Variedades 100% colombianas, seleccionadas y tostadas artesanalmente.</p>
+            <h2 class="display-5 fw-bold mb-4 text-white">Descubre el Sabor del Café Montañero</h2>
+            <p class="lead mb-5 text-white">Compra café directamente de nuestros caficultores. Variedades 100% colombianas, seleccionadas y tostadas artesanalmente.</p>
 
             <div class="row row-cols-1 row-cols-md-3 g-4">
+
                 <!-- Producto 1 -->
                 <div class="col">
                     <div class="card h-100 shadow-sm border-0">
-                        <img src="../public/img/img-caféviva.jpg" class="card-img-top" alt="Café Clásico" style="height: 250px; object-fit: cover;">
-                        <div class="card-body">
+                        <img src="../public/img/img-caféviva.jpg" class="card-img-top" alt="Café Montaña Viva" style="height: 250px; object-fit: cover;">
+                        <div class="card-body text-center">
                             <h5 class="card-title">Café Montaña Viva</h5>
-                            <p class="card-text">Presentación: 250g | Tostión media<br>Notas: Chocolate, nuez y caña de azúcar.</p>
+                            <p class="card-text">250g | Tostión media<br>Notas: Chocolate, nuez y caña de azúcar.</p>
                             <p class="fw-bold text-success">$20.000 COP</p>
-                            <a href="#" class="btn btn-outline-success">Comprar ahora</a>
+                            <a href="index.php?controller=cart&action=add&id=1" class="btn btn-outline-success">Agregar al carrito</a>
                         </div>
                     </div>
                 </div>
@@ -296,12 +310,12 @@
                 <!-- Producto 2 -->
                 <div class="col">
                     <div class="card h-100 shadow-sm border-0">
-                        <img src="../public/img/img-reserva-marquetalia.jpg" class="card-img-top" alt="Café Especialidad" style="height: 250px; object-fit: cover;">
-                        <div class="card-body">
+                        <img src="../public/img/img-reserva-marquetalia.jpg" class="card-img-top" alt="Reserva Marquetalia" style="height: 250px; object-fit: cover;">
+                        <div class="card-body text-center">
                             <h5 class="card-title">Reserva Marquetalia</h5>
-                            <p class="card-text">Presentación: 500g | Tostión alta<br>Origen: Marquetalia, Caldas.<br>Sabor intenso y aroma floral.</p>
+                            <p class="card-text">500g | Tostión alta<br>Origen: Marquetalia, Caldas. Aroma floral.</p>
                             <p class="fw-bold text-success">$35.000 COP</p>
-                            <a href="#" class="btn btn-outline-success">Agregar al carrito</a>
+                            <a href="index.php?controller=cart&action=add&id=2" class="btn btn-outline-success">Agregar al carrito</a>
                         </div>
                     </div>
                 </div>
@@ -309,12 +323,12 @@
                 <!-- Producto 3 -->
                 <div class="col">
                     <div class="card h-100 shadow-sm border-0">
-                        <img src="../public/img/img-aromamontañero.jpg" class="card-img-top" alt="Café Molido" style="height: 250px; object-fit: cover;">
-                        <div class="card-body">
+                        <img src="../public/img/img-aromamontañero.jpg" class="card-img-top" alt="Aroma Montañero" style="height: 250px; object-fit: cover;">
+                        <div class="card-body text-center">
                             <h5 class="card-title">Aroma Montañero</h5>
-                            <p class="card-text">Presentación: 1kg | Molido<br>Café de especialidad para preparar en prensa o cafetera tradicional.</p>
+                            <p class="card-text">1kg | Molido<br>Especialidad para prensa o cafetera tradicional.</p>
                             <p class="fw-bold text-success">$60.000 COP</p>
-                            <a href="#" class="btn btn-outline-success">Ver detalles</a>
+                            <a href="index.php?controller=cart&action=add&id=3" class="btn btn-outline-success">Agregar al carrito</a>
                         </div>
                     </div>
                 </div>
@@ -322,12 +336,12 @@
                 <!-- Producto 4 -->
                 <div class="col">
                     <div class="card h-100 shadow-sm border-0">
-                        <img src="../public/img/img-granosupremo.jpg" class="card-img-top" alt="Café en grano" style="height: 250px; object-fit: cover;">
-                        <div class="card-body">
+                        <img src="../public/img/img-granosupremo.jpg" class="card-img-top" alt="Grano Supremo" style="height: 250px; object-fit: cover;">
+                        <div class="card-body text-center">
                             <h5 class="card-title">Café Grano Supremo</h5>
-                            <p class="card-text">Presentación: 500g | En grano<br>Para moler al gusto. Ideal para métodos filtrados o espresso.</p>
+                            <p class="card-text">500g | En grano<br>Ideal para métodos filtrados o espresso.</p>
                             <p class="fw-bold text-success">$38.000 COP</p>
-                            <a href="#" class="btn btn-outline-success">Comprar</a>
+                            <a href="index.php?controller=cart&action=add&id=4" class="btn btn-outline-success">Agregar al carrito</a>
                         </div>
                     </div>
                 </div>
@@ -335,30 +349,33 @@
                 <!-- Producto 5 -->
                 <div class="col">
                     <div class="card h-100 shadow-sm border-0">
-                        <img src="../public/img/img-cosechaoro.jpg" class="card-img-top" alt="Café Edición Limitada" style="height: 250px; object-fit: cover;">
-                        <div class="card-body">
+                        <img src="../public/img/img-cosechaoro.jpg" class="card-img-top" alt="Cosecha de Oro" style="height: 250px; object-fit: cover;">
+                        <div class="card-body text-center">
                             <h5 class="card-title">Café Cosecha de Oro</h5>
-                            <p class="card-text">Presentación: 250g | Tostión clara<br>Edición limitada de micro lote con sabores exóticos.</p>
+                            <p class="card-text">250g | Tostión clara<br>Edición limitada con sabores exóticos.</p>
                             <p class="fw-bold text-success">$28.000 COP</p>
-                            <a href="#" class="btn btn-outline-success">Ver más</a>
+                            <a href="index.php?controller=cart&action=add&id=5" class="btn btn-outline-success">Agregar al carrito</a>
                         </div>
                     </div>
                 </div>
+
                 <!-- Producto 6 -->
                 <div class="col">
                     <div class="card h-100 shadow-sm border-0">
-                        <img src="../public/img/img-gonzalez.jpg" class="card-img-top" alt="Café Edición Limitada" style="height: 250px; object-fit: cover;">
-                        <div class="card-body">
+                        <img src="../public/img/img-gonzalez.jpg" class="card-img-top" alt="Finca González" style="height: 250px; object-fit: cover;">
+                        <div class="card-body text-center">
                             <h5 class="card-title">Finca González</h5>
-                            <p class="card-text">Presentación: 250g | Molido o en grano<br>Café de finca única, sabores exóticos.</p>
+                            <p class="card-text">250g | Molido o en grano<br>Café de finca única, sabores especiales.</p>
                             <p class="fw-bold text-success">$28.000 COP</p>
-                            <a href="#" class="btn btn-outline-success">Ver más</a>
+                            <a href="index.php?controller=cart&action=add&id=6" class="btn btn-outline-success">Agregar al carrito</a>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
+
     <!-- Llamado a la acción en tres columnas -->
     <section id="caficultores" class="py-5" style="background-color: #F2DAC4; color: #000;">
         <div class="container">

@@ -1,17 +1,17 @@
 <?php
 session_start();
 
-// Incluimos la base de datos
 require_once __DIR__ . '/../config/database.php';
 
 // Conexión a la base de datos
 $conexion = Database::connect();
 
-// Obtenemos el controlador y acción
+// Obtener controlador y acción desde la URL
 $controller = $_GET['controller'] ?? 'home';
-$action = $_GET['action'] ?? 'index';
+$action     = $_GET['action'] ?? 'index';
 
 switch ($controller) {
+    // -------- HOME --------
     case 'home':
         switch ($action) {
             case 'index':
@@ -23,117 +23,160 @@ switch ($controller) {
             case 'registroExitoso':
                 require_once '../views/home/registroExitoso.php';
                 break;
-            case 'dashboard':  // Asegúrate de tener esto
+            case 'dashboard':
                 require_once '../views/home/dashboard.php';
                 break;
             default:
-                echo "<h2>Página no encontrada (home)</h2>";
-                break;
+                echo "<h2>Acción no encontrada (home)</h2>";
         }
         break;
 
+    // -------- FARMER --------
     case 'farmer':
         require_once __DIR__ . '/../controllers/FarmerController.php';
         $farmerController = new FarmerController($conexion);
 
-        if ($action === 'registrar') {
-            $farmerController->registrar();
-        } elseif ($action === 'listar') {
-            $farmerController->listar();
-        } elseif ($action === 'exportar') {
-            $farmerController->exportarCSV(); // <- para la función de exportar
-        } else {
-            echo "<h2>Acción no encontrada (farmer)</h2>";
+        switch ($action) {
+            case 'registrar':
+                $farmerController->registrar();
+                break;
+            case 'listar':
+                $farmerController->listar();
+                break;
+            case 'exportar':
+                $farmerController->exportarCSV();
+                break;
+            default:
+                echo "<h2>Acción no encontrada (farmer)</h2>";
         }
         break;
 
+    // -------- AUTH --------
     case 'auth':
         require_once __DIR__ . '/../controllers/AuthController.php';
         $authController = new AuthController($conexion);
 
-        if ($action === 'login') {
-            $authController->login();
-        } elseif ($action === 'loginPost') {
-            $authController->iniciarSesion();
-        } elseif ($action === 'logout') {
-            $authController->logout();
-        } elseif ($action === 'forgotPassword') {
-            $authController->forgotPassword();
-        } elseif ($action === 'resetPassword') {
-            $authController->resetPassword();
-        } elseif ($action === 'sendResetEmail') {
-            $authController->sendResetEmail();
-        } else {
-            echo "<h2>Acción no encontrada (auth)</h2>";
+        switch ($action) {
+            case 'login':
+                $authController->login();
+                break;
+            case 'loginPost':
+                $authController->iniciarSesion();
+                break;
+            case 'logout':
+                $authController->logout();
+                break;
+            case 'forgotPassword':
+                $authController->forgotPassword();
+                break;
+            case 'resetPassword':
+                $authController->resetPassword();
+                break;
+            case 'sendResetEmail':
+                $authController->sendResetEmail();
+                break;
+            default:
+                echo "<h2>Acción no encontrada (auth)</h2>";
         }
         break;
 
+    // -------- PRODUCT --------
     case 'product':
         require_once __DIR__ . '/../controllers/ProductController.php';
         $productController = new ProductController($conexion);
 
-        if ($action === 'index') {
-            $productController->index();
-        } elseif ($action === 'create') {
-            $productController->create();
-        } elseif ($action === 'store') {
-            $productController->store();
-        } elseif ($action === 'edit') {
-            $productController->edit();
-        } elseif ($action === 'update') {
-            $productController->update();
-        } elseif ($action === 'delete') {
-            $productController->delete();
-        } elseif ($action === 'salesHistory') {
-            $productController->salesHistory();
-        } elseif ($action === 'exportSalesCSV') {
-            $productController->exportSalesCSV();
-        } else {
-            echo "<h2>Acción no encontrada (product)</h2>";
+        switch ($action) {
+            case 'index':
+                $productController->index();
+                break;
+            case 'create':
+                $productController->create();
+                break;
+            case 'store':
+                $productController->store();
+                break;
+            case 'edit':
+                $productController->edit();
+                break;
+            case 'update':
+                $productController->update();
+                break;
+            case 'delete':
+                $productController->delete();
+                break;
+            case 'salesHistory':
+                $productController->salesHistory();
+                break;
+            case 'exportSalesCSV':
+                $productController->exportSalesCSV();
+                break;
+            default:
+                echo "<h2>Acción no encontrada (product)</h2>";
         }
         break;
 
-    default:
-        echo "<h2>Controlador no encontrado</h2>";
-        break;
-
+    // -------- USER --------
     case 'user':
         require_once __DIR__ . '/../controllers/UserController.php';
         $userController = new UserController($conexion);
 
-        if ($action === 'index') {
-            $userController->index();
-        } elseif ($action === 'create') {
-            $userController->create(); // 👈 aquí agregas la llamada a create()
-        } elseif ($action === 'registrar') {
-            $userController->registrar();
-        } elseif ($action === 'edit') {
-            $userController->edit();
-        } elseif ($action === 'update') {
-            $userController->update();
-        } elseif ($action === 'delete') {
-            $userController->delete();
-        } else {
-            echo "<h2>Acción no encontrada (user)</h2>";
+        switch ($action) {
+            case 'index':
+                $userController->index();
+                break;
+            case 'create':
+                $userController->create();
+                break;
+            case 'registrar':
+                $userController->registrar();
+                break;
+            case 'edit':
+                $userController->edit();
+                break;
+            case 'update':
+                $userController->update();
+                break;
+            case 'delete':
+                $userController->delete();
+                break;
+            default:
+                echo "<h2>Acción no encontrada (user)</h2>";
         }
         break;
 
-        if (file_exists($controllerFile)) {
-            require_once $controllerFile;
-            $controllerClass = ucfirst($controller) . "Controller";
+    // -------- CART (Carrito de Compras) --------
+    case 'cart':
+        require_once __DIR__ . '/../controllers/CartController.php';
+        $cartController = new CartController($conexion);
 
-            $controllerObj = new $controllerClass();
-
-            if (method_exists($controllerObj, $action)) {
-                $controllerObj->$action();
-            } else {
-                echo "Método '$action' no encontrado.";
-            }
-        } else {
-            echo "Controlador '$controller' no encontrado.";
+        switch ($action) {
+            case 'index':
+                $cartController->index();
+                break;
+            case 'add':
+                $cartController->add();
+                break;
+            case 'remove':
+                $cartController->remove();
+                break;
+            case 'clear':
+                $cartController->clear();
+                break;
+            case 'checkout':
+                $cartController->checkout();
+                break;
+            case 'thankyou':
+                require_once __DIR__ . '/../views/cart/thankyou.php';
+                break;
+            default:
+                echo "<h2>Acción no encontrada (cart)</h2>";
+                break;
         }
+        break;
 
-    case 'dashboard':
-        require_once '../views/home/dashboard.php';
+
+    // -------- DEFAULT --------
+    default:
+        echo "<h2>Controlador no encontrado</h2>";
         break;
 }
