@@ -150,9 +150,6 @@ switch ($controller) {
         $cartController = new CartController($conexion);
 
         switch ($action) {
-            case 'index':
-                $cartController->index();
-                break;
             case 'add':
                 $cartController->add();
                 break;
@@ -163,20 +160,33 @@ switch ($controller) {
                 $cartController->clear();
                 break;
             case 'checkout':
-                $cartController->checkout();
+                $cartController->checkout(); // ✅ Muestra el formulario
+                break;
+            case 'checkoutPost':
+                $cartController->checkoutPost(); // ✅ Procesa datos del formulario y guarda
+                break;
+            case 'checkoutConfirm':
+                $cartController->checkoutConfirm();
+                break;
+            case 'confirm':
+                $cartController->checkoutConfirm(); // <--- ESTA LÍNEA ES NUEVA
                 break;
             case 'thankyou':
-                require_once __DIR__ . '/../views/cart/thankyou.php';
+                $cartController->thankyou(); // ✅ Página final de agradecimiento
                 break;
             default:
                 echo "<h2>Acción no encontrada (cart)</h2>";
-                break;
         }
         break;
-
 
     // -------- DEFAULT --------
     default:
         echo "<h2>Controlador no encontrado</h2>";
+        break;
+
+    // -------- Finalizar compra --------
+
+    case 'checkoutPost':
+        $cartController->checkoutPost();
         break;
 }

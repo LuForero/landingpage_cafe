@@ -12,7 +12,7 @@ class Product
     // Obtener todos los productos
     public function getAll()
     {
-        $stmt = $this->db->prepare("SELECT * FROM products");
+        $stmt = $this->db->prepare("SELECT * FROM products ORDER BY id DESC");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -51,7 +51,7 @@ class Product
                                         description = :description,
                                         image = :image
                                     WHERE id = :id");
-        $stmt->bindParam(':id', $id);      
+        $stmt->bindParam(':id', $id);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':category', $category);
         $stmt->bindParam(':price', $price);

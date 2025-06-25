@@ -52,11 +52,13 @@ class Sale
 
     public function getAllSalesWithDetails()
     {
-        $sql = "SELECT s.order_id, p.name as product_name, s.quantity, s.subtotal, s.created_at
+        $sql = "SELECT s.order_id, p.name AS product_name, s.quantity, s.subtotal,
+                   o.created_at AS order_date, o.total_amount, o.name AS customer_name, o.email, o.status
             FROM sales s
             JOIN products p ON s.product_id = p.id
-            ORDER BY s.created_at DESC";
-        $stmt = $this->db->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            JOIN orders o ON s.order_id = o.id
+            ORDER BY o.created_at DESC";
+
+        return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 }

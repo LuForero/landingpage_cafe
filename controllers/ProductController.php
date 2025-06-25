@@ -20,26 +20,20 @@ class ProductController
     public function index()
     {
         $products = $this->productModel->getAll();
-
-        foreach ($products as &$product) {
-            $soldQuantity = $this->saleModel->getTotalSoldByProduct($product['id']);
-            $product['stock'] -= $soldQuantity;
-        }
-
         require_once __DIR__ . '/../views/products/index.php';
     }
 
     // Historial de ventas
     public function salesHistory()
     {
-        $sales = $this->saleModel->getAllSales();
+        $sales = $this->saleModel->getAllSalesWithDetails();
         require_once __DIR__ . '/../views/products/sales.php';
     }
 
     // Mostrar formulario de creación
     public function create()
     {
-        require_once __DIR__ . '/../views/product/create.php';
+        require_once __DIR__ . '/../views/products/create.php';
     }
 
     // Guardar nuevo producto
@@ -76,7 +70,7 @@ class ProductController
     {
         $id = $_GET['id'];
         $product = $this->productModel->getById($id);
-        require_once __DIR__ . '/../views/product/edit.php';
+        require_once __DIR__ . '/../views/products/edit.php';
     }
 
     // Guardar cambios en el producto
@@ -125,24 +119,28 @@ class ProductController
     {
         require_once __DIR__ . '/../models/Sale.php';
         $saleModel = new Sale($this->db);
-        $sales = $saleModel->getAllSalesWithDetails(); // Debes tener esta función en Sale.php
+        $sales = $saleModel->getAllSalesWithDetails(); // Asegúrate que esta función existe y funciona
 
-        header('Content-Type: text/csv');
+        // Limpia cualquier posible salida previa
+        if (ob_get_length()) {
+            ob_clean();
+        }
+
+        header('Content-Type: text/csv; charset=utf-8');
         header('Content-Disposition: attachment; filename="historial_ventas.csv"');
 
         $output = fopen('php://output', 'w');
 
-        // Encabezados
+        // Encabezados del CSV
         fputcsv($output, ['Orden ID', 'Producto', 'Cantidad', 'Subtotal', 'Fecha']);
 
-        // Filas
         foreach ($sales as $sale) {
             fputcsv($output, [
-                $sale['order_id'],
-                $sale['product_name'],
-                $sale['quantity'],
-                $sale['subtotal'],
-                $sale['created_at'],
+                $sale['order_id'] ?? '',
+                $sale['product_name'] ?? '',
+                $sale['quantity'] ?? '',
+                $sale['subtotal'] ?? '',
+                $sale['order_date'] ?? '',
             ]);
         }
 

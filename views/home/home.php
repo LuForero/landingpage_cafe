@@ -37,11 +37,11 @@
                         Iniciar Sesión
                     </a>
 
-                    <a href="index.php?controller=cart&action=index" class="position-relative text-dark text-decoration-none">
+                    <a href="index.php?controller=cart&action=checkout" class="position-relative text-dark text-decoration-none">
                         <i class="bi bi-cart4 fs-4"></i>
-                        <?php if (!empty($_SESSION['cart']) && count($_SESSION['cart']) > 0): ?>
+                        <?php if (!empty($_SESSION['cart'])): ?>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                <?= count($_SESSION['cart']) ?>
+                                <?= array_sum(array_column($_SESSION['cart'], 'quantity')) ?>
                             </span>
                         <?php endif; ?>
                     </a>
@@ -302,7 +302,7 @@
                             <h5 class="card-title">Café Montaña Viva</h5>
                             <p class="card-text">250g | Tostión media<br>Notas: Chocolate, nuez y caña de azúcar.</p>
                             <p class="fw-bold text-success">$20.000 COP</p>
-                            <a href="index.php?controller=cart&action=add&id=1" class="btn btn-outline-success">Agregar al carrito</a>
+                            <a href="index.php?controller=cart&action=add&id=2" class="btn btn-primary">Agregar al carrito</a>
                         </div>
                     </div>
                 </div>
@@ -315,7 +315,7 @@
                             <h5 class="card-title">Reserva Marquetalia</h5>
                             <p class="card-text">500g | Tostión alta<br>Origen: Marquetalia, Caldas. Aroma floral.</p>
                             <p class="fw-bold text-success">$35.000 COP</p>
-                            <a href="index.php?controller=cart&action=add&id=2" class="btn btn-outline-success">Agregar al carrito</a>
+                            <a href="index.php?controller=cart&action=add&id=3" class="btn btn-primary">Agregar al carrito</a>
                         </div>
                     </div>
                 </div>
@@ -328,7 +328,7 @@
                             <h5 class="card-title">Aroma Montañero</h5>
                             <p class="card-text">1kg | Molido<br>Especialidad para prensa o cafetera tradicional.</p>
                             <p class="fw-bold text-success">$60.000 COP</p>
-                            <a href="index.php?controller=cart&action=add&id=3" class="btn btn-outline-success">Agregar al carrito</a>
+                            <a href="index.php?controller=cart&action=add&id=4" class="btn btn-primary">Agregar al carrito</a>
                         </div>
                     </div>
                 </div>
@@ -341,7 +341,7 @@
                             <h5 class="card-title">Café Grano Supremo</h5>
                             <p class="card-text">500g | En grano<br>Ideal para métodos filtrados o espresso.</p>
                             <p class="fw-bold text-success">$38.000 COP</p>
-                            <a href="index.php?controller=cart&action=add&id=4" class="btn btn-outline-success">Agregar al carrito</a>
+                            <a href="index.php?controller=cart&action=add&id=5" class="btn btn-primary">Agregar al carrito</a>
                         </div>
                     </div>
                 </div>
@@ -354,7 +354,7 @@
                             <h5 class="card-title">Café Cosecha de Oro</h5>
                             <p class="card-text">250g | Tostión clara<br>Edición limitada con sabores exóticos.</p>
                             <p class="fw-bold text-success">$28.000 COP</p>
-                            <a href="index.php?controller=cart&action=add&id=5" class="btn btn-outline-success">Agregar al carrito</a>
+                            <a href="index.php?controller=cart&action=add&id=6" class="btn btn-primary">Agregar al carrito</a>
                         </div>
                     </div>
                 </div>
@@ -367,7 +367,7 @@
                             <h5 class="card-title">Finca González</h5>
                             <p class="card-text">250g | Molido o en grano<br>Café de finca única, sabores especiales.</p>
                             <p class="fw-bold text-success">$28.000 COP</p>
-                            <a href="index.php?controller=cart&action=add&id=6" class="btn btn-outline-success">Agregar al carrito</a>
+                            <a href="index.php?controller=cart&action=add&id=7" class="btn btn-primary">Agregar al carrito</a>
                         </div>
                     </div>
                 </div>

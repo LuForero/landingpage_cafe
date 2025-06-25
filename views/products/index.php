@@ -6,11 +6,10 @@
     <a href="index.php?controller=product&action=create" class="btn btn-success mb-3">
         <i class="bi bi-plus-circle"></i> Agregar Nuevo Producto
     </a>
-    
+
     <a href="index.php?controller=product&action=salesHistory" class="btn btn-secondary mb-3 ms-2">
         <i class="bi bi-receipt"></i> Historial de Ventas
     </a>
-
 
     <table class="table table-bordered table-striped">
         <thead class="table-dark text-center">
@@ -21,7 +20,7 @@
                 <th>Descripción</th>
                 <th>Stock</th>
                 <th>Imagen Producto</th>
-                <?php if ($_SESSION['role'] === 'admin'): ?>
+                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
                     <th>Acciones</th>
                 <?php endif; ?>
             </tr>
@@ -37,12 +36,12 @@
                         <td><?= $product['stock'] ?></td>
                         <td>
                             <?php if (!empty($product['image'])): ?>
-                                <img src="/Landingpage-cafe/<?= $product['image'] ?>" alt="Imagen" style="width: 100px;">
+                                <img src="/Landingpage-cafe/<?= htmlspecialchars($product['image']) ?>" alt="Imagen" style="width: 100px;">
                             <?php else: ?>
                                 Sin imagen
                             <?php endif; ?>
                         </td>
-                        <?php if ($_SESSION['role'] === 'admin'): ?>
+                        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
                             <td>
                                 <a href="index.php?controller=product&action=edit&id=<?= $product['id'] ?>" class="btn btn-warning btn-sm">
                                     Editar
@@ -58,7 +57,9 @@
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="7" class="text-center">No hay productos registrados.</td>
+                    <td colspan="<?= isset($_SESSION['role']) && $_SESSION['role'] === 'admin' ? '7' : '6' ?>" class="text-center">
+                        No hay productos registrados.
+                    </td>
                 </tr>
             <?php endif; ?>
         </tbody>
