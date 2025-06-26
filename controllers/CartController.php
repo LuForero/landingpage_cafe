@@ -87,6 +87,8 @@ class CartController
         $email    = $_POST['email'] ?? '';
         $phone    = $_POST['phone'] ?? '';
         $comments = $_POST['comments'] ?? '';
+        $status   = 'pendiente';
+        $total    = 0;
 
         require_once __DIR__ . '/../models/Order.php';
         require_once __DIR__ . '/../models/Sale.php';
@@ -94,28 +96,42 @@ class CartController
         $orderModel = new Order($this->db);
         $saleModel  = new Sale($this->db);
 
-        $orderId = $orderModel->createWithDetails($name, $email, $phone, $comments);
+        // Crear la orden con todos los datos necesarios
+        // Línea 105–107 corregido
+        $stmt = $this->db->prepare("INSERT INTO orders (name, email, phone, comments, total_amount, status, order_date)
+        VALUES (:name, :email, :phone, :comments, :total, 'pendiente', NOW())");
 
-        $total = 0;
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':phone', $phone);
+        $stmt->bindParam(':comments', $comments);
+        $stmt->bindParam(':total', $total); // <--- ¡Este estaba faltando! ⚠️
+        $stmt->execute();
 
+        $orderId = $this->db->lastInsertId();
+
+        // Insertar productos en la tabla sales
         foreach ($_SESSION['cart'] as $item) {
             $subtotal = $item['price'] * $item['quantity'];
             $total += $subtotal;
+
             $saleModel->create($orderId, $item['id'], $item['quantity'], $subtotal);
         }
 
-        // Actualizar total en orden
+        // Actualizar el total en la tabla orders
         $stmt = $this->db->prepare("UPDATE orders SET total_amount = :total WHERE id = :id");
         $stmt->bindParam(':total', $total);
         $stmt->bindParam(':id', $orderId);
         $stmt->execute();
 
-        // Limpiar sesión
+        // Limpiar el carrito
         unset($_SESSION['cart']);
 
+        // Redirigir a la página de agradecimiento
         header('Location: index.php?controller=cart&action=thankyou');
         exit();
     }
+
 
     // Página de agradecimiento
     public function thankyou()
@@ -220,5 +236,37 @@ class CartController
             header("Location: index.php?controller=cart&action=checkout");
             exit;
         }
+    }
+
+    public function confirmPayment()
+    {
+        $orderId = $_POST['order_id'] ?? null;
+
+        if ($orderId) {
+            // Marcar como pagado
+            $stmt = $this->db->prepare("UPDATE orders SET status = 'pagado' WHERE id = :id");
+            $stmt->bindParam(':id', $orderId);
+            $stmt->execute();
+
+            // Descontar stock
+            $stmt = $this->db->prepare("SELECT product_id, quantity FROM sales WHERE order_id = :id");
+            $stmt->bindParam(':id', $orderId);
+            $stmt->execute();
+            $ventas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($ventas as $venta) {
+                $stmt = $this->db->prepare("UPDATE products SET stock = stock - :qty WHERE id = :pid");
+                $stmt->bindParam(':qty', $venta['quantity']);
+                $stmt->bindParam(':pid', $venta['product_id']);
+                $stmt->execute();
+            }
+        }
+
+        header("Location: index.php?controller=cart&action=thankyou");
+    }
+
+    public function simulatePayment()
+    {
+        require_once __DIR__ . '/../views/cart/simulate_payment.php';
     }
 }

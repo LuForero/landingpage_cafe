@@ -33,7 +33,7 @@
                         <td><?= htmlspecialchars($product['category']) ?></td>
                         <td>$<?= number_format($product['price'], 0, ',', '.') ?></td>
                         <td><?= htmlspecialchars($product['description']) ?></td>
-                        <td><?= $product['stock'] ?></td>
+                        <td><?= htmlspecialchars($product['stock']) ?></td>
                         <td>
                             <?php if (!empty($product['image'])): ?>
                                 <img src="/Landingpage-cafe/<?= htmlspecialchars($product['image']) ?>" alt="Imagen" style="width: 100px;">
@@ -43,14 +43,8 @@
                         </td>
                         <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
                             <td>
-                                <a href="index.php?controller=product&action=edit&id=<?= $product['id'] ?>" class="btn btn-warning btn-sm">
-                                    Editar
-                                </a>
-                                <a href="index.php?controller=product&action=delete&id=<?= $product['id'] ?>"
-                                    class="btn btn-danger btn-sm"
-                                    onclick="return confirm('¿Estás seguro de eliminar este producto?');">
-                                    Eliminar
-                                </a>
+                                <a href="index.php?controller=product&action=edit&id=<?= $product['id'] ?>" class="btn btn-warning btn-sm">Editar</a>
+                                <a href="index.php?controller=product&action=delete&id=<?= $product['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este producto?');">Eliminar</a>
                             </td>
                         <?php endif; ?>
                     </tr>

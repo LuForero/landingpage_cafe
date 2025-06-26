@@ -107,6 +107,9 @@ switch ($controller) {
             case 'salesHistory':
                 $productController->salesHistory();
                 break;
+            case 'markAsPaid': // <<--- Agregar esta línea
+                $productController->markAsPaid();
+                break;
             case 'exportSalesCSV':
                 $productController->exportSalesCSV();
                 break;
@@ -171,12 +174,22 @@ switch ($controller) {
             case 'confirm':
                 $cartController->checkoutConfirm(); // <--- ESTA LÍNEA ES NUEVA
                 break;
+            case 'simulatePayment':
+                $cartController->simulatePayment();
+                break;
+            case 'updateOrderStatus':
+                $productController->updateOrderStatus();
+                break;
             case 'thankyou':
                 $cartController->thankyou(); // ✅ Página final de agradecimiento
                 break;
             default:
                 echo "<h2>Acción no encontrada (cart)</h2>";
         }
+        break;
+
+    case 'updateOrderStatus':
+        $productController->updateOrderStatus();
         break;
 
     // -------- DEFAULT --------
@@ -188,5 +201,9 @@ switch ($controller) {
 
     case 'checkoutPost':
         $cartController->checkoutPost();
+        break;
+
+    case 'updateOrderStatus':
+        $productController->updateOrderStatus();
         break;
 }

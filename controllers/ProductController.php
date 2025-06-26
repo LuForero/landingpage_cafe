@@ -147,4 +147,104 @@ class ProductController
         fclose($output);
         exit;
     }
+
+    public function markAsPaid()
+    {
+        $orderId = $_GET['id'] ?? null;
+
+        if ($orderId) {
+            // Cambiar estado a 'pagado'
+            $stmt = $this->db->prepare("UPDATE orders SET status = 'pagado' WHERE id = :id");
+            $stmt->bindParam(':id', $orderId);
+            $stmt->execute();
+
+            // Actualizar stock (restar ventas)
+            $stmtSales = $this->db->prepare("SELECT product_id, quantity FROM sales WHERE order_id = :order_id");
+            $stmtSales->bindParam(':order_id', $orderId);
+            $stmtSales->execute();
+            $ventas = $stmtSales->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($ventas as $venta) {
+                $stmtUpdate = $this->db->prepare("UPDATE products SET stock = stock - :qty WHERE id = :pid");
+                $stmtUpdate->bindParam(':qty', $venta['quantity']);
+                $stmtUpdate->bindParam(':pid', $venta['product_id']);
+                $stmtUpdate->execute();
+            }
+        }
+
+        // Redirigir al historial
+        header("Location: index.php?controller=product&action=salesHistory");
+        exit();
+    }
+
+    public function updateOrderStatus()
+    {
+        if (!isset($_POST['order_id']) || !isset($_POST['status'])) {
+            echo "Faltan datos necesarios.";
+            return;
+        }
+
+        $orderId = $_POST['order_id'];
+        $newStatus = $_POST['status'];
+
+        // Validar estado permitido
+        $allowedStatuses = ['pendiente', 'pagado', 'cancelado'];
+        if (!in_array($newStatus, $allowedStatuses)) {
+            echo "Estado inválido.";
+            return;
+        }
+
+        // Obtener estado actual
+        $stmt = $this->db->prepare("SELECT status FROM orders WHERE id = :id");
+        $stmt->bindParam(':id', $orderId, PDO::PARAM_INT);
+        $stmt->execute();
+        $currentStatus = $stmt->fetchColumn();
+
+        if (!$currentStatus) {
+            echo "Orden no encontrada.";
+            return;
+        }
+
+        // Solo continuar si cambió el estado
+        if ($currentStatus !== $newStatus) {
+            // Actualizar estado
+            $update = $this->db->prepare("UPDATE orders SET status = :status WHERE id = :id");
+            $update->bindParam(':status', $newStatus);
+            $update->bindParam(':id', $orderId);
+            $update->execute();
+
+            // Descontar stock si se marcó como pagado
+            if ($newStatus === 'pagado') {
+                $stmt = $this->db->prepare("SELECT product_id, quantity FROM sales WHERE order_id = :id");
+                $stmt->bindParam(':id', $orderId);
+                $stmt->execute();
+                $ventas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach ($ventas as $venta) {
+                    $updateStock = $this->db->prepare("UPDATE products SET stock = stock - :qty WHERE id = :pid");
+                    $updateStock->bindParam(':qty', $venta['quantity']);
+                    $updateStock->bindParam(':pid', $venta['product_id']);
+                    $updateStock->execute();
+                }
+            }
+
+            // Revertir stock si estaba pagado y ahora es cancelado
+            if ($currentStatus === 'pagado' && $newStatus === 'cancelado') {
+                $stmt = $this->db->prepare("SELECT product_id, quantity FROM sales WHERE order_id = :id");
+                $stmt->bindParam(':id', $orderId);
+                $stmt->execute();
+                $ventas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach ($ventas as $venta) {
+                    $restoreStock = $this->db->prepare("UPDATE products SET stock = stock + :qty WHERE id = :pid");
+                    $restoreStock->bindParam(':qty', $venta['quantity']);
+                    $restoreStock->bindParam(':pid', $venta['product_id']);
+                    $restoreStock->execute();
+                }
+            }
+        }
+
+        header('Location: index.php?controller=product&action=salesHistory');
+        exit;
+    }
 }

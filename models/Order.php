@@ -47,17 +47,14 @@ class Order
 
     public function createWithDetails($name, $email, $phone, $comments)
     {
-        $status = 'pendiente';
-        $stmt = $this->db->prepare("INSERT INTO orders (name, email, phone, comments, status, created_at) 
-                                VALUES (:name, :email, :phone, :comments, :status, NOW())");
-
+        $stmt = $this->db->prepare("INSERT INTO orders (name, email, phone, comments, status, order_date) 
+                                VALUES (:name, :email, :phone, :comments, 'pendiente', NOW())");
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':phone', $phone);
         $stmt->bindParam(':comments', $comments);
-        $stmt->bindParam(':status', $status);
         $stmt->execute();
 
-        return $this->db->lastInsertId();
+        return $this->db->lastInsertId(); // <-- Esta línea es importante
     }
 }

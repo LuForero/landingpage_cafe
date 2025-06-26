@@ -27,7 +27,7 @@
     <h2 class="mb-4">Finalizar Compra</h2>
 
     <?php if (!empty($_SESSION['cart'])): ?>
-        <form action="index.php?controller=cart&action=confirm" method="POST">
+        <form action="index.php?controller=cart&action=simulatePayment" method="POST">
             <div class="row text-start">
                 <!-- Resumen de compra -->
                 <div class="col-md-6 border-end pe-4">

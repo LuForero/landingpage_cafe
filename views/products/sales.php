@@ -32,19 +32,19 @@
                     <td>$<?= number_format($venta['subtotal'], 0, ',', '.') ?></td>
                     <td>$<?= number_format($venta['total_amount'], 0, ',', '.') ?></td>
                     <td>
-                        <?php
-                        if (!empty($venta['status'])) {
-                            if ($venta['status'] === 'pendiente') {
-                                echo '<span class="badge bg-warning text-dark">Pendiente</span>';
-                            } elseif ($venta['status'] === 'pagado') {
-                                echo '<span class="badge bg-success">Pagado</span>';
-                            } else {
-                                echo '<span class="badge bg-danger">Cancelado</span>';
-                            }
-                        } else {
-                            echo 'Sin estado';
-                        }
-                        ?>
+                        <form action="index.php?controller=updateOrderStatus" method="POST">
+                            <input type="hidden" name="order_id" value="<?= $venta['order_id'] ?>">
+                            <select name="status" class="form-select" onchange="this.form.submit()">
+                                <option value="pendiente" <?= $venta['status'] === 'pendiente' ? 'selected' : '' ?>>Pendiente</option>
+                                <option value="pagado" <?= $venta['status'] === 'pagado' ? 'selected' : '' ?>>Pagado</option>
+                                <option value="cancelado" <?= $venta['status'] === 'cancelado' ? 'selected' : '' ?>>Cancelado</option>
+                            </select>
+                        </form>
+                    </td>
+                    <td>
+                        <?= !empty($venta['order_date']) && strtotime($venta['order_date']) !== false
+                            ? date('Y-m-d H:i', strtotime($venta['order_date']))
+                            : 'Sin fecha' ?>
                     </td>
                 <?php endforeach; ?>
         </tbody>
