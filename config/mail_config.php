@@ -11,7 +11,7 @@ return [
 
     // Contraseña o clave de aplicación generada desde la configuración de seguridad de Gmail
 
-    'password' => 'fkqo imkk oxhe xqvb',
+    'password' => 'kbzp xteg fncl twmv',
 
     // Dirección de correo que aparecerá como remitente del mensaje
     'from_email' => 'llfgon@gmail.com',
