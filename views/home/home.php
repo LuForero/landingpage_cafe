@@ -264,11 +264,6 @@
                     <p class="text-muted">El café se empaca fresco y llega directamente a tu hogar sin intermediarios.</p>
                 </div>
             </div>
-
-            <!-- Llamado a la acción -->
-            <div class="text-center mt-5">
-                <a href="index.php?action=products" class="btn btn-outline-success btn-lg" style="background-color: #4E7316; color: white;">Descubre nuestro café</a>
-            </div>
         </div>
     </section>
 
