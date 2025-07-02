@@ -1,55 +1,126 @@
-Landing Page Café Montañero
+# Landing Page - Café Montañero
 
-Este repositorio contiene el diseño de una Landing Page, emprendimiento de café, con icono de carrito para poder hacer compras en la página. Cada botón del nav lleva a una sessión de la página, tiene incluido un video mostrando el proceso que se lleva el café, desde la plantación hasta el consumo. 
+Este repositorio contiene el desarrollo de una landing page interactiva para el emprendimiento **Café Montañero**. Incluye funcionalidades de compra en línea, registro de caficultores, historial de ventas, autenticación y exportación de datos. Diseñada en un entorno MVC con base de datos MySQL y migrada exitosamente a InfinityFree.
 
-Descripción del Proyecto
+---
 
-La aplicación permite:
+## 📌 Índice
 
-Registrar ventas de productos (Tomados de la sessión de venta de la landing page.).
-Generar reportes de ventas por día y por producto.
-Gestionar usuarios con roles definidos (administrador y editor).
-Registro de Caficultores (Datos que se muestran en mi tabla de registro).
+1. [Análisis de Requerimientos](#1-análisis-de-requerimientos)
+2. [Tecnologías Utilizadas](#2-tecnologías-utilizadas)
+3. [Estructura del Proyecto](#3-estructura-del-proyecto)
+4. [Diagramas del Sistema](#4-diagramas-del-sistema)
+5. [Funcionalidades Principales](#5-funcionalidades-principales)
+6. [Proceso de Migración a InfinityFree](#6-proceso-de-migración-a-infinityfree)
+7. [Pruebas Realizadas](#7-pruebas-realizadas)
+8. [Instalación Local](#8-instalación-local)
 
-🧑‍💼 Administrador
+---
 
-Agregar, modificar o eliminar productos del menú.
-Consultar reportes de ventas por fecha.
-Gestiona los caficultores registrados.
-Agrega, modifica usuarios registrados.
+## 1. 📋 Análisis de Requerimientos
 
-👩🏻‍💼 Editor
+* Registro y visualización de productos.
+* Carrito de compras con simulación de pago.
+* Registro de caficultores.
+* Panel de administración y editor con roles.
+* Historial y exportación de ventas.
+* Diseño responsive e intuitivo para usuarios.
 
-Gestiona lista de caficultores.
-Registrar ventas.
-Consultar y agregar productos disponibles.
-Visualizar su historial de ventas.
-Funcionalidades, ver caficultores y productos.
+---
 
-1. Gestión de Productos
+## 2. 🛠️ Tecnologías Utilizadas
 
-Registro de nuevos productos (nombre,categoría,precio,stock disponible, descripción e imagen del producto).
-Edición y eliminación de productos existentes.
-Categoría por tipo: Molido o en grano, tostión, en grano, molido, tostión alta, tostión media.
+* **Frontend:** HTML5, Bootstrap 5
+* **Backend:** PHP con patrón MVC
+* **Base de Datos:** MySQL (localhost:8889)
+* **Control de versiones:** Git + GitHub
+* **Servidor de despliegue:** [InfinityFree](https://infinityfree.net)
 
-2. Registro de Ventas
+---
 
-Selección de productos desde una interfaz ágil.
-Registro del cliente nombre, email, fecha y hora, producto, cantidad, y estado(pagado, pendiente)
-Visualización diaria de ventas realizadas.
+## 3. 📁 Estructura del Proyecto
 
-3. Historial de ventas
+```
+/controllers
+/models
+/views
+/config
+/public
+/docs
+```
 
-Exportación historial de ventas en CSV.
+---
 
-Tecnologías Utilizadas
+## 4. 🧹 Diagramas del Sistema
 
-Backend: PHP (MVC)
-Base de Datos: MySQL
-Servidor: localhost:8889
-Frontend: HTML5, Bootstrap.
-Versionamiento: Git
-Instalación
+### Diagrama de Casos de Uso (Actores)
 
-Clona el repositorio:
+![Casos de Uso](./docs/img/diagrama-actores.jpg)
+
+### Diagrama de Clases
+
+![Clases](./docs/img/diagrama-clases.jpg)
+
+---
+
+## 5. 🔑 Funcionalidades Principales
+
+### 🧖‍♂️ Registro de Caficultores
+
+* Formulario con datos personales y zona cafetera.
+* Tabla con registros en el panel de administración.
+
+### 🛒 Gestión de Productos
+
+* Alta, edición y baja de productos.
+* Imagen, categoría, descripción y stock.
+
+### 💳 Proceso de Compra
+
+* Carrito interactivo.
+* Simulación de pago.
+* Almacenamiento de orden y estado.
+
+### 📈 Historial de Ventas
+
+* Visualización detallada por fecha.
+* Exportación CSV de ventas.
+
+---
+
+## 6. 🌐 Proceso de Migración a InfinityFree
+
+* Creación de cuenta en InfinityFree.
+* Exportación de la base de datos desde MAMP.
+* Subida de archivos del proyecto por FTP (FileZilla).
+* Configuración de `.htaccess` para rutas amigables.
+* Ajuste de `config/database.php` con credenciales remotas.
+* Verificación de funcionamiento en línea.
+
+---
+
+## 7. 🧪 Pruebas Realizadas
+
+* ✅ Registro de caficultores (validación de formulario).
+* ✅ Agregado de productos y verificación en el listado.
+* ✅ Flujo completo de carrito y confirmación de compra.
+* ✅ Simulación de estados (pendiente, pagado, cancelado).
+* ✅ Exportación funcional del historial a CSV.
+
+---
+
+## 8. 💻 Instalación Local
+
+```bash
 git clone https://github.com/LuForero/landingpage_cafe.git
+```
+
+* Importa la base de datos `landingpage.sql` en phpMyAdmin.
+* Configura las credenciales en `config/database.php`.
+* Abre el proyecto desde tu servidor local (MAMP/XAMPP).
+* Accede a `http://localhost/Landingpage-cafe/public`.
+
+---
+
+👉 **Autor:** Luisa Forero
+🗓️ **Última actualización:** Julio 2025

@@ -21,7 +21,7 @@ class Sale
         $stmt->execute();
     }
 
-    // (Opcional) Obtener ventas por orden
+    // Obtener ventas por orden
     public function getByOrderId($orderId)
     {
         $stmt = $this->db->prepare("SELECT * FROM sales WHERE order_id = :order_id");
