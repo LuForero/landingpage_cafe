@@ -4,7 +4,7 @@
 return [
 
     // Dirección del servidor SMTP (en este caso Gmail)
-    'host' => 'llfgon.gmail.com',
+    'host' => 'smtp.gmail.com',
 
     // Correo electrónico desde el que se enviarán los correos (debe estar autenticado) correo de salida
     'username' => 'llfgon@gmail.com',

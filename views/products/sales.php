@@ -31,22 +31,31 @@
                     <td><?= $venta['quantity'] ?></td>
                     <td>$<?= number_format($venta['subtotal'], 0, ',', '.') ?></td>
                     <td>$<?= number_format($venta['total_amount'], 0, ',', '.') ?></td>
+
                     <td>
-                        <form action="index.php?controller=updateOrderStatus" method="POST">
-                            <input type="hidden" name="order_id" value="<?= $venta['order_id'] ?>">
-                            <select name="status" class="form-select" onchange="this.form.submit()">
-                                <option value="pendiente" <?= $venta['status'] === 'pendiente' ? 'selected' : '' ?>>Pendiente</option>
-                                <option value="pagado" <?= $venta['status'] === 'pagado' ? 'selected' : '' ?>>Pagado</option>
-                                <option value="cancelado" <?= $venta['status'] === 'cancelado' ? 'selected' : '' ?>>Cancelado</option>
-                            </select>
-                        </form>
+                        <?php if ($venta['status'] === 'pagado'): ?>
+                            <span class="badge bg-success">Pagado</span>
+                        <?php elseif ($venta['status'] === 'cancelado'): ?>
+                            <span class="badge bg-danger">Cancelado</span>
+                        <?php else: ?>
+                            <form action="index.php?controller=updateOrderStatus" method="POST">
+                                <input type="hidden" name="order_id" value="<?= $venta['order_id'] ?>">
+                                <select name="status" class="form-select form-select-sm" onchange="this.form.submit()">
+                                    <option value="pendiente" <?= $venta['status'] === 'pendiente' ? 'selected' : '' ?>>Pendiente</option>
+                                    <option value="pagado">Pagado</option>
+                                    <option value="cancelado">Cancelado</option>
+                                </select>
+                            </form>
+                        <?php endif; ?>
                     </td>
+
                     <td>
                         <?= !empty($venta['order_date']) && strtotime($venta['order_date']) !== false
                             ? date('Y-m-d H:i', strtotime($venta['order_date']))
                             : 'Sin fecha' ?>
                     </td>
-                <?php endforeach; ?>
+                </tr>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </div>

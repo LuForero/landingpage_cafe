@@ -57,4 +57,55 @@ class Order
 
         return $this->db->lastInsertId(); // <-- Esta línea es importante
     }
+
+    public function createPaidOrder($name, $email, $phone, $comments)
+    {
+        if (empty($_SESSION['cart'])) {
+            return false;
+        }
+
+        $total = 0;
+
+        // Calcular el total de la orden
+        foreach ($_SESSION['cart'] as $item) {
+            $subtotal = $item['price'] * $item['quantity'];
+            $total += $subtotal;
+        }
+
+        // Insertar orden
+        $stmt = $this->db->prepare("INSERT INTO orders (
+        name, email, phone, comments, total_amount, status, order_date, created_at
+    ) VALUES (
+        :name, :email, :phone, :comments, :total, 'pagado', NOW(), NOW()
+    )");
+
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':phone', $phone);
+        $stmt->bindParam(':comments', $comments);
+        $stmt->bindParam(':total', $total);
+
+        $stmt->execute();
+
+        $orderId = $this->db->lastInsertId();
+
+        // Insertar productos en la tabla sales
+        require_once __DIR__ . '/Sale.php';
+        $saleModel = new Sale($this->db);
+
+        foreach ($_SESSION['cart'] as $item) {
+            $subtotal = $item['price'] * $item['quantity'];
+            $saleModel->create($orderId, $item['id'], $item['quantity'], $subtotal);
+        }
+
+        // Actualizar stock
+        foreach ($_SESSION['cart'] as $item) {
+            $stmt = $this->db->prepare("UPDATE products SET stock = stock - :qty WHERE id = :id");
+            $stmt->bindParam(':qty', $item['quantity']);
+            $stmt->bindParam(':id', $item['id']);
+            $stmt->execute();
+        }
+
+        return $orderId;
+    }
 }

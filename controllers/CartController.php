@@ -96,42 +96,39 @@ class CartController
         $orderModel = new Order($this->db);
         $saleModel  = new Sale($this->db);
 
-        // Crear la orden con todos los datos necesarios
-        // Línea 105–107 corregido
+        // ✅ PRIMERO calcula el total
+        foreach ($_SESSION['cart'] as $item) {
+            $subtotal = $item['price'] * $item['quantity'];
+            $total += $subtotal;
+        }
+
+        // ✅ AHORA sí crea la orden con el total calculado
         $stmt = $this->db->prepare("INSERT INTO orders (name, email, phone, comments, total_amount, status, order_date)
-        VALUES (:name, :email, :phone, :comments, :total, 'pendiente', NOW())");
+        VALUES (:name, :email, :phone, :comments, :total, :status, NOW())");
 
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':phone', $phone);
         $stmt->bindParam(':comments', $comments);
-        $stmt->bindParam(':total', $total); // <--- ¡Este estaba faltando! ⚠️
+        $stmt->bindParam(':total', $total);
+        $stmt->bindParam(':status', $status);
         $stmt->execute();
 
         $orderId = $this->db->lastInsertId();
 
-        // Insertar productos en la tabla sales
+        // ✅ Registrar cada producto en la tabla sales
         foreach ($_SESSION['cart'] as $item) {
             $subtotal = $item['price'] * $item['quantity'];
-            $total += $subtotal;
-
             $saleModel->create($orderId, $item['id'], $item['quantity'], $subtotal);
         }
 
-        // Actualizar el total en la tabla orders
-        $stmt = $this->db->prepare("UPDATE orders SET total_amount = :total WHERE id = :id");
-        $stmt->bindParam(':total', $total);
-        $stmt->bindParam(':id', $orderId);
-        $stmt->execute();
-
-        // Limpiar el carrito
+        // ✅ Limpiar carrito
         unset($_SESSION['cart']);
 
-        // Redirigir a la página de agradecimiento
+        // ✅ Redirigir
         header('Location: index.php?controller=cart&action=thankyou');
         exit();
     }
-
 
     // Página de agradecimiento
     public function thankyou()

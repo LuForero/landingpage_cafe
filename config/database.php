@@ -1,6 +1,6 @@
 <?php
 class Database //Se declara una clase llamada Database. Será usada para manejar la conexión a la base de datos.
-{ 
+{
     //Se definen cuatro propiedades estáticas y privadas que almacenan los datos de conexión:
     private static $host = 'localhost:8889'; //Nombre del host de la base de datos.
     private static $dbName = 'Landingpage'; //Nombre de la base de datos.
@@ -20,5 +20,11 @@ class Database //Se declara una clase llamada Database. Será usada para manejar
         } catch (PDOException $e) { //Se captura cualquier excepción lanzada por PDO.
             die("Error de conexión: " . $e->getMessage()); //Se detiene la ejecución del script y se muestra un mensaje de error.
         }
+        $options = [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, // lanza errores
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        ];
+
+        return new PDO($dsn, $user, $pass, $options);
     }
 }
