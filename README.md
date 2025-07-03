@@ -1,10 +1,10 @@
 # Landing Page - Café Montañero
 
-Este repositorio contiene el desarrollo de una landing page interactiva para el emprendimiento **Café Montañero**. Incluye funcionalidades de compra en línea, registro de caficultores, historial de ventas, autenticación y exportación de datos. Diseñada en un entorno MVC con base de datos MySQL y migrada exitosamente a InfinityFree.
+Este repositorio contiene el desarrollo de una landing page interactiva para el emprendimiento **Café Montañero**. Incluye funcionalidades de compra en línea, registro de caficultores, historial de ventas, autenticación y exportación de datos. Diseñada en un entorno MVC con base de datos MySQL y migrada a Infinity Free.
 
 ---
 
-## 📌 Índice
+##  Índice
 
 1. [Análisis de Requerimientos](#1-análisis-de-requerimientos)
 2. [Tecnologías Utilizadas](#2-tecnologías-utilizadas)
@@ -23,29 +23,30 @@ Este repositorio contiene el desarrollo de una landing page interactiva para el 
 * Carrito de compras con simulación de pago.
 * Registro de caficultores.
 * Panel de administración y editor con roles.
+* Lista de registro de caficultores y exportación del documento.
 * Historial y exportación de ventas.
 * Diseño responsive e intuitivo para usuarios.
 
 ---
 
-## 2. 🛠️ Tecnologías Utilizadas
+## 2. Tecnologías Utilizadas
 
 * **Frontend:** HTML5, Bootstrap 5
 * **Backend:** PHP con patrón MVC
 * **Base de Datos:** MySQL (localhost:8889)
 * **Control de versiones:** Git + GitHub
-* **Servidor de despliegue:** [InfinityFree](https://infinityfree.net)
+* **Servidor de despliegue:** [InfinityFree]
 
 ---
 
 ## 3. 📁 Estructura del Proyecto
 
 ```
+/config
 /controllers
 /models
-/views
-/config
 /public
+/views
 /docs
 ```
 
@@ -55,11 +56,11 @@ Este repositorio contiene el desarrollo de una landing page interactiva para el 
 
 ### Diagrama de Casos de Uso (Actores)
 
-![Casos de Uso](./docs/img/diagrama-actores.jpg)
+![Casos de Uso](.docs/img/Diagrama-Landing-Page-Página-1.jpeg)
 
 ### Diagrama de Clases
 
-![Clases](./docs/img/diagrama-clases.jpg)
+![Clases](.docs/img/Diagrama-Landing-Page-Página-2.jpeg)
 
 ---
 
@@ -72,8 +73,8 @@ Este repositorio contiene el desarrollo de una landing page interactiva para el 
 
 ### 🛒 Gestión de Productos
 
-* Alta, edición y baja de productos.
-* Imagen, categoría, descripción y stock.
+* Registro de productos.
+* Imagen, categoría, descripción y stock de los productos en venta.
 
 ### 💳 Proceso de Compra
 
@@ -104,7 +105,7 @@ Este repositorio contiene el desarrollo de una landing page interactiva para el 
 * ✅ Registro de caficultores (validación de formulario).
 * ✅ Agregado de productos y verificación en el listado.
 * ✅ Flujo completo de carrito y confirmación de compra.
-* ✅ Simulación de estados (pendiente, pagado, cancelado).
+* ✅ Simulación de estado (pagado).
 * ✅ Exportación funcional del historial a CSV.
 
 ---
@@ -112,15 +113,25 @@ Este repositorio contiene el desarrollo de una landing page interactiva para el 
 ## 8. 💻 Instalación Local
 
 ```bash
+Correo: admin@hotmail.com
+contraseña: 12345
 git clone https://github.com/LuForero/landingpage_cafe.git
 ```
 
 * Importa la base de datos `landingpage.sql` en phpMyAdmin.
 * Configura las credenciales en `config/database.php`.
-* Abre el proyecto desde tu servidor local (MAMP/XAMPP).
+* Abre el proyecto desde tu servidor local (MAMP).
 * Accede a `http://localhost/Landingpage-cafe/public`.
 
 ---
 
-👉 **Autor:** Luisa Forero
-🗓️ **Última actualización:** Julio 2025
+## 9. 🎨 Mockups de Interfaz - Figma
+Mockups del diseño de la Landing Page realizados en Figma. 
+Estos ayudaron a visualizar la estructura de la página y validar la experiencia del usuario antes del desarrollo:
+
+
+| Página de Inicio                | Vista de Registro Caficultores           | Vista Inicio de Sesión              | Vista Finalizar compra              |
+| ------------------------------- | ---------------------------------------- | ----------------------------------- |-------------------------------------|
+| ![](./docs/img/DiseñoFigma.png) | ![](./docs/img/Registrocaficultores.png) | ![](./docs/img/InicioSesion.png)    | ![](./docs/img/Finalizarcompra.png) |
+
+URL: https://www.figma.com/design/rJbwy9zfwjDA5fzHOwBJlP/Untitled?node-id=0-1&p=f&t=2LcjENMRBY10YKIg-0

@@ -392,31 +392,41 @@
 
                 <!-- Columna derecha con imagen -->
                 <div class="col-md-4 text-center">
-                    <img src="../public/img/img-cafe-taza.png" alt="Caficultor" class="img-fluid rounded" style="max-height: 200px;">
+                    <img src="img/img-cafe-taza.png" alt="Caficultor" class="img-fluid rounded" style="max-height: 200px;">
                 </div>
 
             </div>
         </div>
     </section>
 
-
-    <!-- Sección de Contacto Simple -->
-    <section id="contacto" class="py-5 text-center" style="background-color: #262526; color: white;">
+    <!-- Sección de Contacto en tres columnas -->
+    <section id="contacto" class="py-5 text-white" style="background-color: #F2DAC4;">
         <div class="container">
-            <p><i class="bi bi-envelope-fill me-2 text-success"></i> contacto@cafemontanero.com</p>
-            <p><i class="bi bi-telephone-fill me-2 text-success"></i> +57 310 123 4567</p>
-            <p><i class="bi bi-geo-alt-fill me-2 text-success"></i> Marquetalia, Caldas - Colombia</p>
+            <div class="row text-center text-md-start align-items-center">
+                <!-- Columna 1: Logo -->
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <a class="navbar-brand" href="http://localhost:8888/Landingpage-cafe/public/">
+                        <img src="img/logo-cafemontañero.png" alt="" class="img-fluid" style="max-height: 120px;">
+                    </a>
+                </div>
 
-            <div class="mt-4">
-                <h5 class="mb-3">Síguenos</h5>
-                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
-                <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-4"></i></a>
-                <a href="#" class="text-white"><i class="bi bi-whatsapp fs-4"></i></a>
+                <!-- Columna 2: Información de contacto -->
+                <div class="col-md-4 mb-4 mb-md-0" style="color: #262526;">
+                    <p><i class="bi bi-envelope-fill me-2 text-success"></i> contacto@cafemontanero.com</p>
+                    <p><i class="bi bi-telephone-fill me-2 text-success"></i> +57 321 238 63 86</p>
+                    <p><i class="bi bi-geo-alt-fill me-2 text-success"></i> Marquetalia, Caldas - Colombia</p>
+                </div>
+
+                <!-- Columna 3: Redes Sociales -->
+                <div class="col-md-4 text-center" style="color: #262526;">
+                    <h5 class="mb-3">Síguenos</h5>
+                    <a href="#" class="me-3" style="color: #262526;"><i class="bi bi-facebook fs-4"></i></a>
+                    <a href="#" class="me-3" style="color: #262526;"><i class="bi bi-instagram fs-4"></i></a>
+                    <a href="#" style="color: #262526;"><i class="bi bi-whatsapp fs-4"></i></a>
+                </div>
             </div>
         </div>
     </section>
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
