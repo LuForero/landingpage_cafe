@@ -14,10 +14,11 @@ Este repositorio contiene el desarrollo de una landing page interactiva para el 
 6. [Proceso de Migración a InfinityFree](#6-proceso-de-migración-a-infinityfree)
 7. [Pruebas Realizadas](#7-pruebas-realizadas)
 8. [Instalación Local](#8-instalación-local)
+9. [Mockups de Interfaz Figma](#9-mockups-de-interfaz---figma)
 
 ---
 
-## 1. 📋 Análisis de Requerimientos
+## 1. Análisis de Requerimientos
 
 * Registro y visualización de productos.
 * Carrito de compras con simulación de pago.
@@ -39,7 +40,7 @@ Este repositorio contiene el desarrollo de una landing page interactiva para el 
 
 ---
 
-## 3. 📁 Estructura del Proyecto
+## 3. Estructura del Proyecto
 
 ```
 /config
@@ -52,19 +53,19 @@ Este repositorio contiene el desarrollo de una landing page interactiva para el 
 
 ---
 
-## 4. 🧹 Diagramas del Sistema
+## 4. Diagramas del Sistema
 
 ### Diagrama de Casos de Uso (Actores)
 
-![Casos de Uso](.docs/img/Diagrama-Landing-Page-Página-1.jpeg)
+![Casos de Uso](../Landingpage-cafe/Docs/img/Diagrama%20Landing%20Page%20-%20Página%201.jpeg)
 
 ### Diagrama de Clases
 
-![Clases](.docs/img/Diagrama-Landing-Page-Página-2.jpeg)
+![Clases](../Landingpage-cafe/Docs/img/Diagrama%20Landing%20Page%20-%20Página%202.jpeg)
 
 ---
 
-## 5. 🔑 Funcionalidades Principales
+## 5. Funcionalidades Principales
 
 ### 🧖‍♂️ Registro de Caficultores
 
@@ -89,7 +90,7 @@ Este repositorio contiene el desarrollo de una landing page interactiva para el 
 
 ---
 
-## 6. 🌐 Proceso de Migración a InfinityFree
+## 6. Proceso de Migración a InfinityFree
 
 * Creación de cuenta en InfinityFree.
 * Exportación de la base de datos desde MAMP.
@@ -100,7 +101,7 @@ Este repositorio contiene el desarrollo de una landing page interactiva para el 
 
 ---
 
-## 7. 🧪 Pruebas Realizadas
+## 7. Pruebas Realizadas
 
 * ✅ Registro de caficultores (validación de formulario).
 * ✅ Agregado de productos y verificación en el listado.
@@ -110,7 +111,7 @@ Este repositorio contiene el desarrollo de una landing page interactiva para el 
 
 ---
 
-## 8. 💻 Instalación Local
+## 8. Instalación Local
 
 ```bash
 Correo: admin@hotmail.com
@@ -125,13 +126,13 @@ git clone https://github.com/LuForero/landingpage_cafe.git
 
 ---
 
-## 9. 🎨 Mockups de Interfaz - Figma
+## 9. Mockups de Interfaz - Figma
 Mockups del diseño de la Landing Page realizados en Figma. 
 Estos ayudaron a visualizar la estructura de la página y validar la experiencia del usuario antes del desarrollo:
 
 
-| Página de Inicio                | Vista de Registro Caficultores           | Vista Inicio de Sesión              | Vista Finalizar compra              |
-| ------------------------------- | ---------------------------------------- | ----------------------------------- |-------------------------------------|
-| ![](./docs/img/DiseñoFigma.png) | ![](./docs/img/Registrocaficultores.png) | ![](./docs/img/InicioSesion.png)    | ![](./docs/img/Finalizarcompra.png) |
+| Página de Inicio                                  | Vista de Registro Caficultores                            | Vista Inicio de Sesión                             | Vista Finalizar compra                                |
+| --------------------------------------------------| ----------------------------------------------------------| ---------------------------------------------------|-------------------------------------------------------|
+| ![](../Landingpage-cafe/Docs/img/DiseñoFigma.png) | ![](../Landingpage-cafe/Docs/img/Registrocaficultores.png) | ![](../Landingpage-cafe/Docs/img/InicioSesion.png) | ![](../Landingpage-cafe/Docs/img/Finalizarcompra.png) |
 
 URL: https://www.figma.com/design/rJbwy9zfwjDA5fzHOwBJlP/Untitled?node-id=0-1&p=f&t=2LcjENMRBY10YKIg-0
