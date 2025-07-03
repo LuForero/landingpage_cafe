@@ -16,27 +16,31 @@ class ProductController
         $this->saleModel = new Sale($this->db);
     }
 
-    // Mostrar listado de productos (con stock descontado por ventas)
+    // 📦 Mostrar listado de productos (con stock actualizado por ventas)
+    // 📦 Display list of products (stock adjusted based on sales)
     public function index()
     {
         $products = $this->productModel->getAll();
         require_once __DIR__ . '/../views/products/index.php';
     }
 
-    // Historial de ventas
+    // 🧾 Historial de ventas
+    // 🧾 Sales history
     public function salesHistory()
     {
         $sales = $this->saleModel->getAllSalesWithDetails();
         require_once __DIR__ . '/../views/products/sales.php';
     }
 
-    // Mostrar formulario de creación
+    // ➕ Mostrar formulario para crear nuevo producto
+    // ➕ Show form to create a new product
     public function create()
     {
         require_once __DIR__ . '/../views/products/create.php';
     }
 
-    // Guardar nuevo producto
+    // 💾 Guardar nuevo producto en base de datos
+    // 💾 Save new product to the database
     public function store()
     {
         $name = $_POST['name'];
@@ -65,7 +69,8 @@ class ProductController
         header('Location: index.php?controller=product&action=index');
     }
 
-    // Mostrar formulario de edición
+    // ✏️ Mostrar formulario de edición de producto
+    // ✏️ Show form to edit product
     public function edit()
     {
         $id = $_GET['id'];
@@ -73,7 +78,8 @@ class ProductController
         require_once __DIR__ . '/../views/products/edit.php';
     }
 
-    // Guardar cambios en el producto
+    // ✅ Guardar cambios en producto
+    // ✅ Save product updates
     public function update()
     {
         $id = $_POST['id'];
@@ -107,7 +113,8 @@ class ProductController
         header('Location: index.php?controller=product&action=index');
     }
 
-    // Eliminar producto
+    // 🗑️ Eliminar producto
+    // 🗑️ Delete product
     public function delete()
     {
         $id = $_GET['id'];
@@ -115,23 +122,20 @@ class ProductController
         header('Location: index.php?controller=product&action=index');
     }
 
+    // ⬇️ Exportar historial de ventas a CSV
+    // ⬇️ Export sales history to CSV
     public function exportSalesCSV()
     {
-        require_once __DIR__ . '/../models/Sale.php';
-        $saleModel = new Sale($this->db);
-        $sales = $saleModel->getAllSalesWithDetails(); // Asegúrate que esta función existe y funciona
+        $sales = $this->saleModel->getAllSalesWithDetails();
 
-        // Limpia cualquier posible salida previa
         if (ob_get_length()) {
-            ob_clean();
+            ob_clean(); // Clean any previous output
         }
 
         header('Content-Type: text/csv; charset=utf-8');
         header('Content-Disposition: attachment; filename="historial_ventas.csv"');
 
         $output = fopen('php://output', 'w');
-
-        // Encabezados del CSV
         fputcsv($output, ['Orden ID', 'Producto', 'Cantidad', 'Subtotal', 'Fecha']);
 
         foreach ($sales as $sale) {
@@ -148,17 +152,17 @@ class ProductController
         exit;
     }
 
+    // ✅ Marcar una orden como pagada y descontar stock
+    // ✅ Mark an order as paid and deduct stock
     public function markAsPaid()
     {
         $orderId = $_GET['id'] ?? null;
 
         if ($orderId) {
-            // Cambiar estado a 'pagado'
             $stmt = $this->db->prepare("UPDATE orders SET status = 'pagado' WHERE id = :id");
             $stmt->bindParam(':id', $orderId);
             $stmt->execute();
 
-            // Actualizar stock (restar ventas)
             $stmtSales = $this->db->prepare("SELECT product_id, quantity FROM sales WHERE order_id = :order_id");
             $stmtSales->bindParam(':order_id', $orderId);
             $stmtSales->execute();
@@ -172,48 +176,45 @@ class ProductController
             }
         }
 
-        // Redirigir al historial
         header("Location: index.php?controller=product&action=salesHistory");
         exit();
     }
 
+    // 🔄 Actualizar el estado de una orden (y el stock si aplica)
+    // 🔄 Update an order's status (and stock if applicable)
     public function updateOrderStatus()
     {
         if (!isset($_POST['order_id']) || !isset($_POST['status'])) {
-            echo "Faltan datos necesarios.";
+            echo "Faltan datos necesarios. / Missing required data.";
             return;
         }
 
         $orderId = $_POST['order_id'];
         $newStatus = $_POST['status'];
-
-        // Validar estado permitido
         $allowedStatuses = ['pendiente', 'pagado', 'cancelado'];
+
         if (!in_array($newStatus, $allowedStatuses)) {
-            echo "Estado inválido.";
+            echo "Estado inválido / Invalid status.";
             return;
         }
 
-        // Obtener estado actual
         $stmt = $this->db->prepare("SELECT status FROM orders WHERE id = :id");
         $stmt->bindParam(':id', $orderId, PDO::PARAM_INT);
         $stmt->execute();
         $currentStatus = $stmt->fetchColumn();
 
         if (!$currentStatus) {
-            echo "Orden no encontrada.";
+            echo "Orden no encontrada. / Order not found.";
             return;
         }
 
-        // Solo continuar si cambió el estado
         if ($currentStatus !== $newStatus) {
-            // Actualizar estado
             $update = $this->db->prepare("UPDATE orders SET status = :status WHERE id = :id");
             $update->bindParam(':status', $newStatus);
             $update->bindParam(':id', $orderId);
             $update->execute();
 
-            // Descontar stock si se marcó como pagado
+            // Descontar stock si se marca como pagado / Deduct stock if status is set to paid
             if ($newStatus === 'pagado') {
                 $stmt = $this->db->prepare("SELECT product_id, quantity FROM sales WHERE order_id = :id");
                 $stmt->bindParam(':id', $orderId);
@@ -228,7 +229,7 @@ class ProductController
                 }
             }
 
-            // Revertir stock si estaba pagado y ahora es cancelado
+            // Revertir stock si pasa de pagado a cancelado / Restore stock if changed from paid to canceled
             if ($currentStatus === 'pagado' && $newStatus === 'cancelado') {
                 $stmt = $this->db->prepare("SELECT product_id, quantity FROM sales WHERE order_id = :id");
                 $stmt->bindParam(':id', $orderId);

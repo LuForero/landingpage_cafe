@@ -1,30 +1,40 @@
 <?php
-class Database //Se declara una clase llamada Database. Será usada para manejar la conexión a la base de datos.
+// A class named Database is declared. It will be used to manage the database connection.
+class Database
 {
-    //Se definen cuatro propiedades estáticas y privadas que almacenan los datos de conexión:
-    private static $host = 'localhost:8889'; //Nombre del host de la base de datos.
-    private static $dbName = 'Landingpage'; //Nombre de la base de datos.
-    private static $username = 'root'; //Nombre de usuario para la conexión a la base de datos.
-    private static $password = 'root'; //Contraseña para la conexión a la base de datos.
+    // Private static properties are defined to store connection details.
+    private static $host = 'localhost:8889';        // Hostname for the database server (including port for MAMP).
+    private static $dbName = 'Landingpage';         // Name of the database to connect to.
+    private static $username = 'root';              // Username to access the database.
+    private static $password = 'root';              // Password associated with the user.
 
+    // Static method to establish and return a PDO connection
     public static function connect()
-    { //Se define un método estático llamado connect que se encargará de establecer la conexión a la base de datos.
-        try { //Se intenta ejecutar el bloque de código dentro del try.
-            $conn = new PDO( //Se crea una nueva instancia de PDO, que es una clase de PHP para manejar conexiones a bases de datos.
-                "mysql:host=" . self::$host . ";dbname=" . self::$dbName, //Se especifica el DSN (Data Source Name) que contiene la información necesaria para conectarse a la base de datos.
-                self::$username, //Se pasa el nombre de usuario.
-                self::$password //Se pasa la contraseña.
+    {
+        try {
+            // A new PDO object is created using the previously defined connection information.
+            $conn = new PDO(
+                "mysql:host=" . self::$host . ";dbname=" . self::$dbName,
+                self::$username,
+                self::$password
             );
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //Se establece el modo de error de PDO para que lance excepciones en caso de error.
-            return $conn; //Se devuelve la conexión establecida.
-        } catch (PDOException $e) { //Se captura cualquier excepción lanzada por PDO.
-            die("Error de conexión: " . $e->getMessage()); //Se detiene la ejecución del script y se muestra un mensaje de error.
+
+            // Configure PDO to throw exceptions when errors occur.
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            // Return the established connection.
+            return $conn;
+        } catch (PDOException $e) {
+            // If a connection error occurs, display the message and stop execution.
+            die("Connection error: " . $e->getMessage());
         }
+
+        // ⚠️ This block will never be executed due to the return above.
         $options = [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, // lanza errores
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ];
 
-        return new PDO($dsn, $user, $pass, $options);
+        return new PDO($dsn, $user, $pass, $options); // ← This code is currently unnecessary.
     }
 }

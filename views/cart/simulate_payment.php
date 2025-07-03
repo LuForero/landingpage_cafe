@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../layout/header_dashboard.php';
 
-// ✅ Iniciar sesión solo si no está iniciada
+// ✅ Iniciar sesión solo si aún no está activa / Start session only if not started
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -9,44 +9,52 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once __DIR__ . '/../../config/database.php';
 require_once __DIR__ . '/../../models/Order.php';
 
+// ✅ Conexión a la base de datos / Connect to the database
 $db = Database::connect();
 $orderModel = new Order($db);
 
-// ✅ Verificar que hay productos en el carrito
+// ✅ Verificar si el carrito tiene productos / Ensure cart is not empty
 if (empty($_SESSION['cart'])) {
-    echo "<div class='alert alert-warning text-center'>No hay productos en el carrito para procesar el pago.</div>";
+    echo "<div class='alert alert-warning text-center'>
+            No hay productos en el carrito para procesar el pago. <br>
+            No products in cart to process payment.
+          </div>";
     require_once __DIR__ . '/../layout/footer_dashboard.php';
     exit();
 }
 
-// ✅ Actualizar cantidades del carrito si vienen desde el formulario
+// ✅ Actualizar cantidades del carrito según el formulario / Update cart quantities from form
 if (isset($_POST['quantities']) && is_array($_POST['quantities'])) {
     foreach ($_POST['quantities'] as $productId => $qty) {
         $productId = (int) $productId;
-        $qty = max(1, (int) $qty); // Asegurar cantidad mínima 1
+        $qty = max(1, (int) $qty); // Asegura cantidad mínima de 1 / Ensure minimum quantity of 1
         if (isset($_SESSION['cart'][$productId])) {
             $_SESSION['cart'][$productId]['quantity'] = $qty;
         }
     }
 }
 
-// ✅ Capturar los datos del formulario
+// ✅ Captura los datos enviados por el formulario / Capture form data
 $name     = trim($_POST['name'] ?? '');
 $email    = trim($_POST['email'] ?? '');
 $phone    = trim($_POST['phone'] ?? '');
 $comments = trim($_POST['comments'] ?? '');
 
-// ✅ Validar campos obligatorios
+// ✅ Validación de campos obligatorios / Required field validation
 if ($name === '' || $email === '' || $phone === '') {
-    echo "<div class='alert alert-danger text-center'>Por favor completa todos los campos obligatorios.</div>";
+    echo "<div class='alert alert-danger text-center'>
+            Por favor completa todos los campos obligatorios. <br>
+            Please fill in all required fields.
+          </div>";
     require_once __DIR__ . '/../layout/footer_dashboard.php';
     exit();
 }
 
-// ✅ Crear orden como pagada
+// ✅ Crear orden como pagada / Create order with 'paid' status
 $orderId = $orderModel->createPaidOrder($name, $email, $phone, $comments);
 ?>
 
+<!-- Estilos del mensaje de confirmación / Styles for the confirmation message -->
 <style>
     body {
         background-image: url('public/img/img-fondo-formulario.jpg');
@@ -70,19 +78,32 @@ $orderId = $orderModel->createPaidOrder($name, $email, $phone, $comments);
     }
 </style>
 
+<!-- ✅ Mensaje de éxito o error / Success or error message -->
 <?php if ($orderId): ?>
-    <?php unset($_SESSION['cart']); ?>
+    <?php unset($_SESSION['cart']); // Vaciar carrito / Empty cart 
+    ?>
     <div class="payment-container">
-        <h2 class="text-success">¡Pago exitoso!</h2>
-        <p class="mt-3">Gracias por tu compra. Tu pedido ha sido registrado correctamente.</p>
-        <a href="index.php?controller=home&action=index" class="btn btn-primary mt-3">Volver al inicio</a>
+        <h2 class="text-success">¡Pago exitoso! / Payment Successful!</h2>
+        <p class="mt-3">
+            Gracias por tu compra. Tu pedido ha sido registrado correctamente. <br>
+            Thank you for your purchase. Your order has been recorded successfully.
+        </p>
+        <a href="index.php?controller=home&action=index" class="btn btn-primary mt-3">
+            Volver al inicio / Back to Home
+        </a>
     </div>
 <?php else: ?>
     <div class="payment-container">
-        <h2 class="text-danger">Error al procesar el pago</h2>
-        <p>Ocurrió un problema al registrar tu orden. Intenta nuevamente.</p>
-        <a href="index.php?controller=cart&action=checkout" class="btn btn-warning mt-3">Volver al carrito</a>
+        <h2 class="text-danger">Error al procesar el pago / Payment Processing Error</h2>
+        <p>
+            Ocurrió un problema al registrar tu orden. Intenta nuevamente. <br>
+            There was a problem recording your order. Please try again.
+        </p>
+        <a href="index.php?controller=cart&action=checkout" class="btn btn-warning mt-3">
+            Volver al carrito / Back to Cart
+        </a>
     </div>
 <?php endif; ?>
 
 <?php require_once __DIR__ . '/../layout/footer_dashboard.php'; ?>
+<!-- Pie de página común / Shared dashboard footer -->

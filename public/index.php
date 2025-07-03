@@ -1,17 +1,26 @@
 <?php
+// Inicia la sesión para manejar variables de usuario
+// Start the session to handle user variables
 session_start();
 
+// Importa la configuración de conexión a la base de datos
+// Include database connection settings
 require_once __DIR__ . '/../config/database.php';
 
-// Conexión a la base de datos
+// Conecta a la base de datos
+// Connect to the database
 $conexion = Database::connect();
 
-// Obtener controlador y acción desde la URL
+// Obtiene el controlador y la acción desde la URL (con valores por defecto)
+// Get controller and action from URL (defaults if not provided)
 $controller = $_GET['controller'] ?? 'home';
 $action     = $_GET['action'] ?? 'index';
 
+// Enrutamiento general
+// Main routing
 switch ($controller) {
-    // -------- HOME --------
+
+    // ---------- HOME ----------
     case 'home':
         switch ($action) {
             case 'index':
@@ -27,11 +36,11 @@ switch ($controller) {
                 require_once '../views/home/dashboard.php';
                 break;
             default:
-                echo "<h2>Acción no encontrada (home)</h2>";
+                echo "<h2>Acción no encontrada (home)</h2>"; // "Action not found (home)"
         }
         break;
 
-    // -------- FARMER --------
+    // ---------- FARMER ----------
     case 'farmer':
         require_once __DIR__ . '/../controllers/FarmerController.php';
         $farmerController = new FarmerController($conexion);
@@ -51,7 +60,7 @@ switch ($controller) {
         }
         break;
 
-    // -------- AUTH --------
+    // ---------- AUTH (Autenticación) ----------
     case 'auth':
         require_once __DIR__ . '/../controllers/AuthController.php';
         $authController = new AuthController($conexion);
@@ -80,7 +89,7 @@ switch ($controller) {
         }
         break;
 
-    // -------- PRODUCT --------
+    // ---------- PRODUCT ----------
     case 'product':
         require_once __DIR__ . '/../controllers/ProductController.php';
         $productController = new ProductController($conexion);
@@ -107,8 +116,8 @@ switch ($controller) {
             case 'salesHistory':
                 $productController->salesHistory();
                 break;
-            case 'markAsPaid': // <<--- Agregar esta línea
-                $productController->markAsPaid();
+            case 'markAsPaid':
+                $productController->markAsPaid(); // ✅ Marca la orden como pagada
                 break;
             case 'exportSalesCSV':
                 $productController->exportSalesCSV();
@@ -118,7 +127,7 @@ switch ($controller) {
         }
         break;
 
-    // -------- USER --------
+    // ---------- USER ----------
     case 'user':
         require_once __DIR__ . '/../controllers/UserController.php';
         $userController = new UserController($conexion);
@@ -147,7 +156,7 @@ switch ($controller) {
         }
         break;
 
-    // -------- CART (Carrito de Compras) --------
+    // ---------- CART (Carrito de compras) ----------
     case 'cart':
         require_once __DIR__ . '/../controllers/CartController.php';
         $cartController = new CartController($conexion);
@@ -163,47 +172,39 @@ switch ($controller) {
                 $cartController->clear();
                 break;
             case 'checkout':
-                $cartController->checkout(); // ✅ Muestra el formulario
+                $cartController->checkout(); // ✅ Muestra formulario de pago
                 break;
             case 'checkoutPost':
-                $cartController->checkoutPost(); // ✅ Procesa datos del formulario y guarda
+                $cartController->checkoutPost(); // ✅ Procesa datos del formulario
                 break;
             case 'checkoutConfirm':
-                $cartController->checkoutConfirm();
-                break;
             case 'confirm':
-                $cartController->checkoutConfirm(); // <--- ESTA LÍNEA ES NUEVA
+                $cartController->checkoutConfirm(); // ✅ Simulación de confirmación
                 break;
             case 'simulatePayment':
-                $cartController->simulatePayment();
+                $cartController->simulatePayment(); // ✅ Marca orden como pagada
                 break;
             case 'updateOrderStatus':
-                $productController->updateOrderStatus();
+                $productController->updateOrderStatus(); // ✅ Cambia estado de orden
                 break;
             case 'thankyou':
-                $cartController->thankyou(); // ✅ Página final de agradecimiento
+                $cartController->thankyou(); // ✅ Página de agradecimiento
                 break;
             default:
                 echo "<h2>Acción no encontrada (cart)</h2>";
         }
         break;
 
+    // ---------- EXTRAS / ERRORES ----------
     case 'updateOrderStatus':
-        $productController->updateOrderStatus();
+        $productController->updateOrderStatus(); // Posible redundancia (ya está en cart)
         break;
-
-    // -------- DEFAULT --------
-    default:
-        echo "<h2>Controlador no encontrado</h2>";
-        break;
-
-    // -------- Finalizar compra --------
 
     case 'checkoutPost':
-        $cartController->checkoutPost();
+        $cartController->checkoutPost(); // También redundante, está en cart
         break;
 
-    case 'updateOrderStatus':
-        $productController->updateOrderStatus();
+    default:
+        echo "<h2>Controlador no encontrado</h2>"; // Default case: Controller not found
         break;
 }

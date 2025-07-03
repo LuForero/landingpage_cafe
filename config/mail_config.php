@@ -1,27 +1,26 @@
 <?php
 
-// Retorna un array asociativo con la configuración para el envío de correos
+// Returns an associative array with the configuration for sending emails
 return [
 
-    // Dirección del servidor SMTP (en este caso Gmail)
+    // SMTP server address (in this case, Gmail)
     'host' => 'smtp.gmail.com',
 
-    // Correo electrónico desde el que se enviarán los correos (debe estar autenticado) correo de salida
+    // Email address used to send messages (must be authenticated with Gmail)
     'username' => 'llfgon@gmail.com',
 
-    // Contraseña o clave de aplicación generada desde la configuración de seguridad de Gmail
-
+    // Application-specific password generated from Gmail security settings
     'password' => 'kbzp xteg fncl twmv',
 
-    // Dirección de correo que aparecerá como remitente del mensaje
+    // Email address that will appear as the sender of the message
     'from_email' => 'llfgon@gmail.com',
 
-    // Nombre que aparecerá como remitente (junto al correo)
+    // Display name that will appear alongside the sender's email
     'from_name' => 'Landing Page',
 
-    // Puerto SMTP que se utilizará: 587 para STARTTLS o 465 para SSL
+    // SMTP port used for the connection: 587 for STARTTLS or 465 for SSL
     'port' => 587,
 
-    // Tipo de cifrado para la conexión: 'tls' (STARTTLS) o 'ssl' (TLS implícito)
+    // Encryption method used for the connection: 'tls' for STARTTLS or 'ssl' for implicit TLS
     'secure' => 'tls',
 ];

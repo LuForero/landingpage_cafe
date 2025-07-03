@@ -1,138 +1,137 @@
 # Landing Page - Café Montañero
 
-Este repositorio contiene el desarrollo de una landing page interactiva para el emprendimiento **Café Montañero**. Incluye funcionalidades de compra en línea, registro de caficultores, historial de ventas, autenticación y exportación de datos. Diseñada en un entorno MVC con base de datos MySQL y migrada a Infinity Free.
+This repository contains the development of an interactive landing page for the **Café Montañero** venture. It includes features such as online purchasing, coffee grower registration, sales history, user authentication, and data export. Built using an MVC architecture with a MySQL database and deployed to Infinity Free.
 
 ---
 
-##  Índice
+## 📋 Index
 
-1. [Análisis de Requerimientos](#1-análisis-de-requerimientos)
-2. [Tecnologías Utilizadas](#2-tecnologías-utilizadas)
-3. [Estructura del Proyecto](#3-estructura-del-proyecto)
-4. [Diagramas del Sistema](#4-diagramas-del-sistema)
-5. [Funcionalidades Principales](#5-funcionalidades-principales)
-6. [Proceso de Migración a InfinityFree](#6-proceso-de-migración-a-infinityfree)
-7. [Pruebas Realizadas](#7-pruebas-realizadas)
-8. [Instalación Local](#8-instalación-local)
-9. [Mockups de Interfaz Figma](#9-mockups-de-interfaz---figma)
-
----
-
-## 1. Análisis de Requerimientos
-
-* Registro y visualización de productos.
-* Carrito de compras con simulación de pago.
-* Registro de caficultores.
-* Panel de administración y editor con roles.
-* Lista de registro de caficultores y exportación del documento.
-* Historial y exportación de ventas.
-* Diseño responsive e intuitivo para usuarios.
+1. [Requirements Analysis](#1-requirements-analysis)
+2. [Technologies Used](#2-technologies-used)
+3. [Project Structure](#3-project-structure)
+4. [System Diagrams](#4-system-diagrams)
+5. [Main Features](#5-main-features)
+6. [Migration Process to InfinityFree](#6-migration-process-to-infinityfree)
+7. [Tests Performed](#7-tests-performed)
+8. [Local Installation](#8-local-installation)
+9. [Figma Interface Mockups](#9-figma-interface-mockups)
 
 ---
 
-## 2. Tecnologías Utilizadas
+## 1. Requirements Analysis
+
+* Product registration and display
+* Shopping cart with payment simulation
+* Coffee grower registration
+* Admin and editor panel with role-based access
+* Coffee grower records and document export
+* Sales history and CSV export
+* Responsive and user-friendly design
+
+---
+
+## 2. Technologies Used
 
 * **Frontend:** HTML5, Bootstrap 5
-* **Backend:** PHP con patrón MVC
-* **Base de Datos:** MySQL (localhost:8889)
-* **Control de versiones:** Git + GitHub
-* **Servidor de despliegue:** [InfinityFree]
+* **Backend:** PHP with MVC pattern
+* **Database:** MySQL (localhost:8889)
+* **Version Control:** Git + GitHub
+* **Hosting Server:** \[InfinityFree]
 
 ---
 
-## 3. Estructura del Proyecto
+## 3. Project Structure
 
 ```
-/config
-/controllers
-/models
-/public
-/views
-/docs
+/config  
+/controllers  
+/models  
+/public  
+/views  
+/docs  
 ```
 
 ---
 
-## 4. Diagramas del Sistema
+## 4. System Diagrams
 
-### Diagrama de Casos de Uso (Actores)
+### Use Case Diagram (Actors)
 
-![Casos de Uso](../Landingpage-cafe/Docs/img/Diagrama%20Landing%20Page%20-%20Página%201.jpeg)
+![Use Case Diagram](../Landingpage-cafe/Docs/img/Diagrama%20Landing%20Page%20-%20Página%201.jpeg)
 
-### Diagrama de Clases
+### Class Diagram
 
-![Clases](../Landingpage-cafe/Docs/img/Diagrama%20Landing%20Page%20-%20Página%202.jpeg)
-
----
-
-## 5. Funcionalidades Principales
-
-### 🧖‍♂️ Registro de Caficultores
-
-* Formulario con datos personales y zona cafetera.
-* Tabla con registros en el panel de administración.
-
-### 🛒 Gestión de Productos
-
-* Registro de productos.
-* Imagen, categoría, descripción y stock de los productos en venta.
-
-### 💳 Proceso de Compra
-
-* Carrito interactivo.
-* Simulación de pago.
-* Almacenamiento de orden y estado.
-
-### 📈 Historial de Ventas
-
-* Visualización detallada por fecha.
-* Exportación CSV de ventas.
+![Class Diagram](../Landingpage-cafe/Docs/img/Diagrama%20Landing%20Page%20-%20Página%202.jpeg)
 
 ---
 
-## 6. Proceso de Migración a InfinityFree
+## 5. Main Features
 
-* Creación de cuenta en InfinityFree.
-* Exportación de la base de datos desde MAMP.
-* Subida de archivos del proyecto por FTP (FileZilla).
-* Configuración de `.htaccess` para rutas amigables.
-* Ajuste de `config/database.php` con credenciales remotas.
-* Verificación de funcionamiento en línea.
+### 🧖‍♂️ Coffee Grower Registration
+
+* Form with personal and location information
+* List of registrations available in the admin panel
+
+### 🛒 Product Management
+
+* Product creation and management
+* Includes image, category, description, and stock
+
+### 💳 Purchase Flow
+
+* Interactive shopping cart
+* Payment simulation
+* Order and status saving
+
+### 📈 Sales History
+
+* Detailed view by date
+* CSV export option available
 
 ---
 
-## 7. Pruebas Realizadas
+## 6. Migration Process to InfinityFree
 
-* ✅ Registro de caficultores (validación de formulario).
-* ✅ Agregado de productos y verificación en el listado.
-* ✅ Flujo completo de carrito y confirmación de compra.
-* ✅ Simulación de estado (pagado).
-* ✅ Exportación funcional del historial a CSV.
+* Create an account on InfinityFree
+* Export database from MAMP
+* Upload project files via FTP (FileZilla)
+* Configure `.htaccess` for friendly URLs
+* Update `config/database.php` with remote credentials
+* Verify functionality online
 
 ---
 
-## 8. Instalación Local
+## 7. Tests Performed
+
+* ✅ Coffee grower registration (form validation)
+* ✅ Product creation and list verification
+* ✅ Full cart and purchase confirmation flow
+* ✅ Payment status simulation
+* ✅ Functional CSV export of sales history
+
+---
+
+## 8. Local Installation
 
 ```bash
-Correo: admin@hotmail.com
-contraseña: 12345
+Email: admin@hotmail.com
+Password: 12345
 git clone https://github.com/LuForero/landingpage_cafe.git
 ```
 
-* Importa la base de datos `landingpage.sql` en phpMyAdmin.
-* Configura las credenciales en `config/database.php`.
-* Abre el proyecto desde tu servidor local (MAMP).
-* Accede a `http://localhost/Landingpage-cafe/public`.
+* Import the `landingpage.sql` database via phpMyAdmin
+* Configure credentials in `config/database.php`
+* Run the project on your local server (MAMP)
+* Access via `http://localhost/Landingpage-cafe/public`
 
 ---
 
-## 9. Mockups de Interfaz - Figma
-Mockups del diseño de la Landing Page realizados en Figma. 
-Estos ayudaron a visualizar la estructura de la página y validar la experiencia del usuario antes del desarrollo:
+## 9. Figma Interface Mockups
 
+Mockups designed in Figma to visualize page structure and validate user experience before development:
 
-| Página de Inicio                                  | Vista de Registro Caficultores                            | Vista Inicio de Sesión                             | Vista Finalizar compra                                |
-| --------------------------------------------------| ----------------------------------------------------------| ---------------------------------------------------|-------------------------------------------------------|
+| Home Page                                         | Coffee Grower Registration View                            | Login View                                         | Checkout View                                         |
+| ------------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------- | ----------------------------------------------------- |
 | ![](../Landingpage-cafe/Docs/img/DiseñoFigma.png) | ![](../Landingpage-cafe/Docs/img/Registrocaficultores.png) | ![](../Landingpage-cafe/Docs/img/InicioSesion.png) | ![](../Landingpage-cafe/Docs/img/Finalizarcompra.png) |
 
-URL: https://www.figma.com/design/rJbwy9zfwjDA5fzHOwBJlP/Untitled?node-id=0-1&p=f&t=2LcjENMRBY10YKIg-0
+URL: [Figma Design Link](https://www.figma.com/design/rJbwy9zfwjDA5fzHOwBJlP/Untitled?node-id=0-1&p=f&t=2LcjENMRBY10YKIg-0)
