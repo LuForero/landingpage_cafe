@@ -57,11 +57,11 @@ This repository contains the development of an interactive landing page for the 
 
 ### Use Case Diagram (Actors)
 
-![Use Case Diagram](../Landingpage-cafe/Docs/img/Diagrama%20Landing%20Page%20-%20Página%201.jpeg)
+![Use Case Diagram](/Docs/actores.jpeg)
 
 ### Class Diagram
 
-![Class Diagram](../Landingpage-cafe/Docs/img/Diagrama%20Landing%20Page%20-%20Página%202.jpeg)
+![Class Diagram](/Docs/clases.jpeg)
 
 ---
 
@@ -130,8 +130,8 @@ git clone https://github.com/LuForero/landingpage_cafe.git
 
 Mockups designed in Figma to visualize page structure and validate user experience before development:
 
-| Home Page                                         | Coffee Grower Registration View                            | Login View                                         | Checkout View                                         |
-| ------------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------- | ----------------------------------------------------- |
-| ![](../Landingpage-cafe/Docs/img/DiseñoFigma.png) | ![](../Landingpage-cafe/Docs/img/Registrocaficultores.png) | ![](../Landingpage-cafe/Docs/img/InicioSesion.png) | ![](../Landingpage-cafe/Docs/img/Finalizarcompra.png) |
+| Home Page                  | Coffee Grower Registration View     | Login View                  | Checkout View                  |
+| ---------------------------| ------------------------------------| ----------------------------| -------------------------------|
+| ![](/Docs/DiseñoFigma.png) | ![](/Docs/Registrocaficultores.png) | ![](/Docs/InicioSesion.png) | ![](/Docs/Finalizarcompra.png) |
 
 URL: [Figma Design Link](https://www.figma.com/design/rJbwy9zfwjDA5fzHOwBJlP/Untitled?node-id=0-1&p=f&t=2LcjENMRBY10YKIg-0)
