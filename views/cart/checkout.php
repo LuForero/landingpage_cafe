@@ -25,7 +25,7 @@
 
 <!-- Contenedor principal del checkout / Main container -->
 <div class="checkout-container text-center">
-    <h2 class="mb-4">Finalizar Compra / Checkout</h2>
+    <h2 class="mb-4">Finalizar Compra</h2>
 
     <?php if (!empty($_SESSION['cart'])): ?>
         <!-- Formulario de envío de orden / Order submission form -->
@@ -33,7 +33,7 @@
             <div class="row text-start">
                 <!-- 🛒 Columna: Lista de productos / Products summary -->
                 <div class="col-md-6 border-end pe-4">
-                    <h5 class="mb-3">Productos Facturados / Invoiced Products</h5>
+                    <h5 class="mb-3">Productos Facturados</h5>
 
                     <ul class="list-group mb-3" id="product-list">
                         <?php $total = 0; ?>
@@ -75,30 +75,30 @@
 
                 <!-- 🧍‍♂️ Formulario de comprador / Buyer form -->
                 <div class="col-md-6 ps-4">
-                    <h5 class="mb-3">Datos del Comprador / Buyer Information</h5>
+                    <h5 class="mb-3">Datos del Comprador</h5>
 
                     <div class="mb-3">
-                        <label class="form-label">Nombre completo / Full Name</label>
+                        <label class="form-label">Nombre completo</label>
                         <input type="text" class="form-control" name="name" required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Correo electrónico / Email</label>
+                        <label class="form-label">Correo electrónico</label>
                         <input type="email" class="form-control" name="email" required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Teléfono / Phone</label>
+                        <label class="form-label">Teléfono</label>
                         <input type="text" class="form-control" name="phone" required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Comentarios (opcional) / Comments (optional)</label>
+                        <label class="form-label">Comentarios (opcional)</label>
                         <textarea class="form-control" name="comments" rows="3"></textarea>
                     </div>
 
                     <!-- Botón de confirmación / Submit button -->
-                    <button type="submit" class="btn btn-success w-100">Confirmar Pedido / Confirm Order</button>
+                    <button type="submit" class="btn btn-success w-100">Confirmar Pedido</button>
                 </div>
             </div>
         </form>
@@ -135,7 +135,7 @@
     <?php else: ?>
         <!-- Mensaje cuando no hay productos / Empty cart message -->
         <div class="alert alert-info text-center">
-            Tu carrito está vacío. / Your cart is empty.
+            Tu carrito está vacío.
         </div>
     <?php endif; ?>
 </div>

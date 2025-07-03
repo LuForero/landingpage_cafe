@@ -83,24 +83,22 @@ $orderId = $orderModel->createPaidOrder($name, $email, $phone, $comments);
     <?php unset($_SESSION['cart']); // Vaciar carrito / Empty cart 
     ?>
     <div class="payment-container">
-        <h2 class="text-success">¡Pago exitoso! / Payment Successful!</h2>
+        <h2 class="text-success">¡Pago exitoso!</h2>
         <p class="mt-3">
-            Gracias por tu compra. Tu pedido ha sido registrado correctamente. <br>
-            Thank you for your purchase. Your order has been recorded successfully.
+            Gracias por tu compra. Tu pedido ha sido registrado correctamente.
         </p>
         <a href="index.php?controller=home&action=index" class="btn btn-primary mt-3">
-            Volver al inicio / Back to Home
+            Volver al inicio
         </a>
     </div>
 <?php else: ?>
     <div class="payment-container">
-        <h2 class="text-danger">Error al procesar el pago / Payment Processing Error</h2>
+        <h2 class="text-danger">Error al procesar el pago</h2>
         <p>
-            Ocurrió un problema al registrar tu orden. Intenta nuevamente. <br>
-            There was a problem recording your order. Please try again.
+            Ocurrió un problema al registrar tu orden. Intenta nuevamente.
         </p>
         <a href="index.php?controller=cart&action=checkout" class="btn btn-warning mt-3">
-            Volver al carrito / Back to Cart
+            Volver al carrito
         </a>
     </div>
 <?php endif; ?>

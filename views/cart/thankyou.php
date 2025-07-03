@@ -3,17 +3,15 @@
 
 <div class="container my-5 text-center">
     <h2 class="text-success mb-4">
-        ¡Gracias por tu compra! <br>
-        Thank you for your purchase!
+        ¡Gracias por tu compra!
     </h2>
 
     <p>
-        Tu pedido ha sido registrado exitosamente. <br>
-        Your order has been successfully recorded.
+        Tu pedido ha sido registrado exitosamente.
     </p>
 
     <a href="index.php" class="btn btn-outline-primary mt-3">
-        Volver a la tienda / Back to Store
+        Volver a la tienda
     </a>
 </div>
 
