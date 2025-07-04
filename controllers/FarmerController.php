@@ -12,7 +12,7 @@ class FarmerController
     $this->farmerModel = new Farmer($conexion); // Crea instancia del modelo Farmer / Create instance of Farmer model
   }
 
-  // 📌 Método para registrar un caficultor / Method to register a coffee grower
+  // Método para registrar un caficultor / Method to register a coffee grower
   public function registrar()
   {
     // Recibimos los datos del formulario / Get form data
@@ -27,7 +27,6 @@ class FarmerController
     // Validamos que los campos obligatorios vengan llenos / Validate required fields
     if (empty($name) || empty($location_type) || empty($sidewalk) || empty($phone) || empty($description)) {
       echo "Todos los campos son obligatorios excepto el email.";
-      echo "All fields are required except email.";
       exit();
     }
 
@@ -57,14 +56,14 @@ class FarmerController
     }
   }
 
-  // 📄 Método para listar caficultores / Method to list coffee growers
+  // Método para listar caficultores / Method to list coffee growers
   public function listar()
   {
     $farmers = $this->farmerModel->getAll(); // Obtener todos los registros / Get all farmers
     require_once __DIR__ . '/../views/farmer/lista.php'; // Cargar vista / Load view
   }
 
-  // 📤 Método para exportar los datos de caficultores a CSV / Export coffee grower data to CSV
+  //Método para exportar los datos de caficultores a CSV / Export coffee grower data to CSV
   public function exportarCSV()
   {
     $farmers = $this->farmerModel->getAll(); // Asegúrate de tener este método en el modelo / Make sure this exists in model

@@ -14,8 +14,8 @@ class CartController
         $this->productModel = new Product($conexion);
     }
 
-    // 👉 Add a product to the cart using its ID
-    // 👉 Agregar un producto al carrito usando su ID
+    // Add a product to the cart using its ID
+    // Agregar un producto al carrito usando su ID
     public function add()
     {
         $productId = $_GET['id'] ?? null;
@@ -58,8 +58,8 @@ class CartController
         exit();
     }
 
-    // 🗑️ Remove a specific product from the cart
-    // 🗑️ Eliminar un producto específico del carrito
+    // Remove a specific product from the cart
+    // Eliminar un producto específico del carrito
     public function remove()
     {
         $productId = $_GET['id'] ?? null;
@@ -72,8 +72,8 @@ class CartController
         exit();
     }
 
-    // ❌ Empty the entire cart
-    // ❌ Vaciar todo el carrito
+    // Empty the entire cart
+    // Vaciar todo el carrito
     public function clear()
     {
         unset($_SESSION['cart']);
@@ -88,8 +88,8 @@ class CartController
         require_once __DIR__ . '/../views/cart/checkout.php';
     }
 
-    // 💾 Process buyer info and register order and sales
-    // 💾 Procesar la información del comprador y registrar la orden y ventas
+    // Process buyer info and register order and sales
+    // Procesar la información del comprador y registrar la orden y ventas
     public function checkoutPost()
     {
         if (empty($_SESSION['cart'])) {
@@ -144,15 +144,15 @@ class CartController
         exit();
     }
 
-    // 🎉 Thank you page after order
-    // 🎉 Página de agradecimiento tras la orden
+    // Thank you page after order
+    // Página de agradecimiento tras la orden
     public function thankyou()
     {
         require_once __DIR__ . '/../views/cart/thankyou.php';
     }
 
-    // 🧾 Confirm the order from the cart summary (checkout)
-    // 🧾 Confirmar la orden desde el resumen del carrito (checkout)
+    // Confirm the order from the cart summary (checkout)
+    // Confirmar la orden desde el resumen del carrito (checkout)
     public function confirm()
     {
         if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
@@ -201,8 +201,8 @@ class CartController
         exit();
     }
 
-    // 🚚 Confirm checkout without total, and register order and sales
-    // 🚚 Confirmar checkout sin total, registrar orden y ventas
+    // Confirm checkout without total, and register order and sales
+    // Confirmar checkout sin total, registrar orden y ventas
     public function checkoutConfirm()
     {
         if (!empty($_SESSION['cart'])) {
@@ -246,8 +246,8 @@ class CartController
         }
     }
 
-    // 💳 Confirm payment and update product stock
-    // 💳 Confirmar el pago y actualizar el stock de productos
+    // Confirm payment and update product stock
+    // Confirmar el pago y actualizar el stock de productos
     public function confirmPayment()
     {
         $orderId = $_POST['order_id'] ?? null;
@@ -276,8 +276,8 @@ class CartController
         header("Location: index.php?controller=cart&action=thankyou");
     }
 
-    // 🎭 Load the payment simulation view
-    // 🎭 Cargar la vista de simulación de pago
+    // Load the payment simulation view
+    // Cargar la vista de simulación de pago
     public function simulatePayment()
     {
         require_once __DIR__ . '/../views/cart/simulate_payment.php';

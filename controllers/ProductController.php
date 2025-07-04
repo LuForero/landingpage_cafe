@@ -16,31 +16,31 @@ class ProductController
         $this->saleModel = new Sale($this->db);
     }
 
-    // 📦 Mostrar listado de productos (con stock actualizado por ventas)
-    // 📦 Display list of products (stock adjusted based on sales)
+    // Mostrar listado de productos (con stock actualizado por ventas)
+    // Display list of products (stock adjusted based on sales)
     public function index()
     {
         $products = $this->productModel->getAll();
         require_once __DIR__ . '/../views/products/index.php';
     }
 
-    // 🧾 Historial de ventas
-    // 🧾 Sales history
+    // Historial de ventas
+    // Sales history
     public function salesHistory()
     {
         $sales = $this->saleModel->getAllSalesWithDetails();
         require_once __DIR__ . '/../views/products/sales.php';
     }
 
-    // ➕ Mostrar formulario para crear nuevo producto
-    // ➕ Show form to create a new product
+    // Mostrar formulario para crear nuevo producto
+    // Show form to create a new product
     public function create()
     {
         require_once __DIR__ . '/../views/products/create.php';
     }
 
-    // 💾 Guardar nuevo producto en base de datos
-    // 💾 Save new product to the database
+    // Guardar nuevo producto en base de datos
+    // Save new product to the database
     public function store()
     {
         $name = $_POST['name'];
@@ -69,8 +69,8 @@ class ProductController
         header('Location: index.php?controller=product&action=index');
     }
 
-    // ✏️ Mostrar formulario de edición de producto
-    // ✏️ Show form to edit product
+    // Mostrar formulario de edición de producto
+    // Show form to edit product
     public function edit()
     {
         $id = $_GET['id'];
@@ -78,8 +78,8 @@ class ProductController
         require_once __DIR__ . '/../views/products/edit.php';
     }
 
-    // ✅ Guardar cambios en producto
-    // ✅ Save product updates
+    // Guardar cambios en producto
+    // Save product updates
     public function update()
     {
         $id = $_POST['id'];
@@ -113,8 +113,8 @@ class ProductController
         header('Location: index.php?controller=product&action=index');
     }
 
-    // 🗑️ Eliminar producto
-    // 🗑️ Delete product
+    // Eliminar producto
+    // Delete product
     public function delete()
     {
         $id = $_GET['id'];
@@ -122,8 +122,8 @@ class ProductController
         header('Location: index.php?controller=product&action=index');
     }
 
-    // ⬇️ Exportar historial de ventas a CSV
-    // ⬇️ Export sales history to CSV
+    // Exportar historial de ventas a CSV
+    // Export sales history to CSV
     public function exportSalesCSV()
     {
         $sales = $this->saleModel->getAllSalesWithDetails();
@@ -152,8 +152,8 @@ class ProductController
         exit;
     }
 
-    // ✅ Marcar una orden como pagada y descontar stock
-    // ✅ Mark an order as paid and deduct stock
+    // Marcar una orden como pagada y descontar stock
+    // Mark an order as paid and deduct stock
     public function markAsPaid()
     {
         $orderId = $_GET['id'] ?? null;
@@ -180,12 +180,12 @@ class ProductController
         exit();
     }
 
-    // 🔄 Actualizar el estado de una orden (y el stock si aplica)
-    // 🔄 Update an order's status (and stock if applicable)
+    // Actualizar el estado de una orden (y el stock si aplica)
+    // Update an order's status (and stock if applicable)
     public function updateOrderStatus()
     {
         if (!isset($_POST['order_id']) || !isset($_POST['status'])) {
-            echo "Faltan datos necesarios. / Missing required data.";
+            echo "Faltan datos necesarios.";
             return;
         }
 
@@ -194,7 +194,7 @@ class ProductController
         $allowedStatuses = ['pendiente', 'pagado', 'cancelado'];
 
         if (!in_array($newStatus, $allowedStatuses)) {
-            echo "Estado inválido / Invalid status.";
+            echo "Estado inválido.";
             return;
         }
 
@@ -204,7 +204,7 @@ class ProductController
         $currentStatus = $stmt->fetchColumn();
 
         if (!$currentStatus) {
-            echo "Orden no encontrada. / Order not found.";
+            echo "Orden no encontrada.";
             return;
         }
 
